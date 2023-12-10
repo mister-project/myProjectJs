@@ -6,3 +6,4 @@ const fullPrice = 25;
 const adaptive = 35;
 alert ("Hello.This firs homework");
 console.log("Hello-cosole");
+//
