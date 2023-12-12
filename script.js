@@ -40,15 +40,11 @@ console.log("п. 3.7 Доп. сервис2: " + service2 + " Цена: " + servi
 //Урок 3 п.7 окончание//↑
 //Урок 3 п.8 начало ↓
 const fullPrice = screenPrice + servicePrice1 + servicePrice2;
-console.log("п. 3.8 переменная fullPrice. тип: " + typeof(fullPrice)); 
+//console.log("п. 3.8 переменная fullPrice. тип: " + typeof(fullPrice)); 
 
 const rollback = 15;
 
-
-
 //console.log("п2.2: " + screens.length); // вып. п 2.2 (Урок 2)
-
-
 
 //(Урок 2) п. 2.3 - часть2-начало вывод стоимости разработки сайта 
 
