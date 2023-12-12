@@ -20,15 +20,15 @@
 //Урок 3 п.7 начало ↓
 const service1 = prompt('Какой дополнительный тип услуги нужен?');
 const servicePrice1 = +prompt('Сколько это будет стоить (руб.)?');
-console.log("П. 7 Доп. сервис1: " + service1 + " (" + typeof(service1) + ")" + " Цена: " + servicePrice1 + " руб." + " (" + typeof(servicePrice1)+ ")");
+console.log("П. 7 Доп. сервис1: " + service1 + " Цена: " + servicePrice1 + " руб.");
 const service2 = prompt('Какой ещё дополнительный тип услуги нужен?');
 const servicePrice2 = +prompt('Сколько ещё это будет стоить?');
-console.log("П. 7 Доп. сервис1: " + service2 + " (" + typeof(service2) + ")" + " Цена: " + servicePrice2 + " руб." + " (" + typeof(servicePrice2)+ ")");
+console.log("П. 7 Доп. сервис2: " + service2 + " Цена: " + servicePrice2 + " руб.");
  
 const rollback = 15;
 const fullPrice = 50;
 
-console.log("п 2.1 переменная fullPrice. тип: " + typeof(fullPrice)); 
+console.log("п 3.2.1 переменная fullPrice. тип: " + typeof(fullPrice)); 
 
 //console.log("п2.2: " + screens.length); // вып. п 2.2 (Урок 2)
 
