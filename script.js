@@ -1,5 +1,4 @@
 'use strict';
-
 //Урок 3 п.3 начало ↓
 // let title = prompt('Как назывется ваш проект?');
 // console.log("П.3 Название проекта: " + title);
@@ -15,21 +14,23 @@
 // console.log("П.5 Стоимость работы: " + screenPrice + " руб. тип:" + typeof(screenPrice));
 //Урок 3 п.5 окончание ↑
 //Урок 3 п.6 начало ↓
-const adaptive = !!prompt('Нужен ли адаптив на сайте? (! Да - НАПИШИТЕ "Да", Нет - ОСТАВЬТЕ ПОЛЕ ПУСТЫМ ! )');
-console.log("П. 6 Адаптив: " + adaptive + " тип: " + typeof(adaptive)); 
-
-//Урок 3 п.6 начало//↑
+// const adaptive = !!prompt('Нужен ли адаптив на сайте? (! Да - НАПИШИТЕ "Да", Нет - ОСТАВЬТЕ ПОЛЕ ПУСТЫМ ! )');
+// console.log("П. 6 Адаптив: " + adaptive + " тип: " + typeof(adaptive)); 
+//Урок 3 п.6 окончание//↑
+//Урок 3 п.7 начало ↓
+const service1 = prompt('Какой дополнительный тип услуги нужен?');
+const servicePrice1 = +prompt('Сколько это будет стоить (руб.)?');
+console.log("П. 7 Доп. сервис1: " + service1 + " (" + typeof(service1) + ")" + " Цена: " + servicePrice1 + " руб." + " (" + typeof(servicePrice1)+ ")");
+const service2 = prompt('Какой ещё дополнительный тип услуги нужен?');
+const servicePrice2 = +prompt('Сколько ещё это будет стоить?');
+console.log("П. 7 Доп. сервис1: " + service2 + " (" + typeof(service2) + ")" + " Цена: " + servicePrice2 + " руб." + " (" + typeof(servicePrice2)+ ")");
+ 
 const rollback = 15;
 const fullPrice = 50;
 
 console.log("п 2.1 переменная fullPrice. тип: " + typeof(fullPrice)); 
 
-
-
-
-
-
-console.log("п2.2: " + screens.length); // вып. п 2.2 (Урок 2)
+//console.log("п2.2: " + screens.length); // вып. п 2.2 (Урок 2)
 
 // (Урок 2) вып. п 2.3 (начало)
 
@@ -41,14 +42,14 @@ const KursYuan = 12.8; //задаю курс юани (Урок 2)
 
 // (Урок 2) п. 2.3 вывод стоимости верстки экранов (Урок 2)
 
-console.log("п2.3: Стоимость верстки экранов " + screenPrice.toFixed(2) + " руб./ " + (screenPrice/KursDoll).toFixed(2) + " дол./ " + (screenPrice/KursGriv).toFixed(2) + " гр./ " + (screenPrice/KursYuan).toFixed(2) + " юан. ");
+// console.log("п2.3: Стоимость верстки экранов " + screenPrice.toFixed(2) + " руб./ " + (screenPrice/KursDoll).toFixed(2) + " дол./ " + (screenPrice/KursGriv).toFixed(2) + " гр./ " + (screenPrice/KursYuan).toFixed(2) + " юан. ");
 
 //(Урок 2) п. 2.3 вывод стоимости разработки сайта 
 
-console.log("п2.3: Стоимость разработки сайта " + fullPrice.toFixed(2) + " рублей/ " + (fullPrice/KursDoll).toFixed(2) + " дол./ " + (fullPrice/KursGriv).toFixed(2) + " гр./ " + (fullPrice/KursYuan).toFixed(2) + " юан. ");
+// console.log("п2.3: Стоимость разработки сайта " + fullPrice.toFixed(2) + " рублей/ " + (fullPrice/KursDoll).toFixed(2) + " дол./ " + (fullPrice/KursGriv).toFixed(2) + " гр./ " + (fullPrice/KursYuan).toFixed(2) + " юан. ");
 // (Урок 2) вып. п 2.3 окончание 
 
-console.log(screens.toLowerCase().split(", ")); // п 2.4 (Урок 2)
+//console.log(screens.toLowerCase().split(", ")); // п 2.4 (Урок 2)
 
 console.log("Откат посреднику " + rollback + "%: " + (fullPrice*(rollback/100)).toFixed(2) + " руб.");  
 
