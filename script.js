@@ -2,13 +2,19 @@
 
 //Урок 3 п.3 начало
 let title = prompt('Как назывется ваш проект?');
-console.log("Название проекта: " + title);
+console.log("П.3 Название проекта: " + title);
 //Урок 3 п.3 окончание
-console.log("п 2.1 переменная title. тип: " + typeof(title)); // вып. п 2.1
 
-let screens = "Простые, Сложные, Интерактивные";
+//Урок 3 п.4 начало
+let screens = prompt('Какие типы экранов нужно разработать?');
+console.log("П.4 Типы экранов (через запятую): " + screens);
+//Урок 3 п.4 окончание
 
-let screenPrice = 30;
+//Урок 3 п.5 начало
+let screenPrice = +prompt('Сколько будет стоить данная работа?');
+console.log(typeof(screenPrice));
+console.log("П.5 Стоимость работы " + screenPrice);
+//Урок 3 п.5 окончание
 const rollback = 15;
 const fullPrice = 50;
 
