@@ -41,20 +41,21 @@ console.log("п. 3.7 Доп. сервис2: " + service2 + " Цена: " + servi
 //Урок 3 п.8 начало ↓
 const fullPrice = screenPrice + servicePrice1 + servicePrice2;
 //console.log("п. 3.8 переменная fullPrice. тип: " + typeof(fullPrice)); 
+//(Урок 2) п. 2.3 - часть2-начало вывод стоимости разработки сайта 
 
+console.log("п. 3.8 Стоимость разработки сайта " + fullPrice.toFixed(2) + " руб./ " + (fullPrice/KursDoll).toFixed(2) + " дол./ " + (fullPrice/KursGriv).toFixed(2) + " гр./ " + (fullPrice/KursYuan).toFixed(2) + " юан. ");
+// (Урок 2) вып. п 2.3 окончание 
 const rollback = 15;
+console.log("п. 2.2.4 Откат посреднику " + rollback + "%: " + (fullPrice*(rollback/100)).toFixed(2) + " руб."); 
 
 //console.log("п2.2: " + screens.length); // вып. п 2.2 (Урок 2)
 
-//(Урок 2) п. 2.3 - часть2-начало вывод стоимости разработки сайта 
 
-console.log("п. 2.2.3: Стоимость разработки сайта " + fullPrice.toFixed(2) + " руб./ " + (fullPrice/KursDoll).toFixed(2) + " дол./ " + (fullPrice/KursGriv).toFixed(2) + " гр./ " + (fullPrice/KursYuan).toFixed(2) + " юан. ");
-// (Урок 2) вып. п 2.3 окончание 
 
-//console.log(screens.toLowerCase().split(", ")); // п 2.4 (Урок 2)
+//Урок 3. пункт 9 ==Начало== ↓ вычитание отката посредника 
+let servicePercentPrice = fullPrice - (fullPrice*(rollback/100));
+console.log("п. 3.9 Цена за вычетом отката: " + Math.ceil(servicePercentPrice) + " руб.");
+//Урок 3. пункт 9 ==Окончание== ↑ вычитание отката посредника 
 
-console.log("п. 2.2.4 Откат посреднику " + rollback + "%: " + (fullPrice*(rollback/100)).toFixed(2) + " руб.");  
+//console.log(screens.toLowerCase().split(", ")); // п 2.4 (Урок 2. формирование массива)
 
-//alert ("Hello.This second homework");
-
-//console.log("Hello-cosole");
