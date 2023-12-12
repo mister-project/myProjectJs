@@ -46,7 +46,6 @@ const rollback = 15;
 
 
 
-
 //console.log("п2.2: " + screens.length); // вып. п 2.2 (Урок 2)
 
 
