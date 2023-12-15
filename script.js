@@ -1,6 +1,6 @@
 //'use strict';
 //объявление переменных
-let title = prompt('Как назывется ваш проект?');
+let title = 'rаЛьКулятор Верстки'//prompt('Как назывется ваш проект?');
 //let screens = prompt('Какие типы экранов нужно разработать? (через запятую, пожалуйста)');
 //let screenPrice = +prompt('Сколько будет стоить данная работа (в руб.)?');
 // let adaptive = !!prompt('Нужен ли адаптив на сайте? (! Да - НАПИШИТЕ "Да", Нет - ОСТАВЬТЕ ПОЛЕ ПУСТЫМ ! )');
@@ -21,8 +21,7 @@ const kursYuan = 12.8; //задаю курс юани (Урок 2)
 // }
 
 function getTitle(w) {
-  return ((w.trimStart()).toUpperCase()).slice(0,1) + w.trimStart().substring(1)
- 
+  return ((w.trimStart()).toUpperCase()).slice(0,1) + w.trimStart().substring(1) 
 }
 
 
@@ -56,7 +55,7 @@ function getTitle(w) {
 //      showTypeOf(title)
 //      showTypeOf(screenPrice)
 //      showTypeOf(adaptive) 
-
+           
 
 // let allServicePrices = getallServicePrices(servicePrice1, servicePrice2);
 // let fullPrice = screenPrice + allServicePrices;
