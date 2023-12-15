@@ -76,3 +76,4 @@ switch (true) {
 
 //console.log(screens.toLowerCase().split(", ")); // п 2.4 (Урок 2. формирование массива)
 
+//для первого commit
