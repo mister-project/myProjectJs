@@ -1,6 +1,6 @@
 //'use strict';
 //объявление переменных
-let title = 'rаЛьКулятор Верстки'//prompt('Как назывется ваш проект?');
+//let title = 'rаЛьКулятор Верстки'//prompt('Как назывется ваш проект?');
 //let screens = prompt('Какие типы экранов нужно разработать? (через запятую, пожалуйста)');
 //let screenPrice = +prompt('Сколько будет стоить данная работа (в руб.)?');
 // let adaptive = !!prompt('Нужен ли адаптив на сайте? (! Да - НАПИШИТЕ "Да", Нет - ОСТАВЬТЕ ПОЛЕ ПУСТЫМ ! )');
@@ -8,21 +8,21 @@ let title = 'rаЛьКулятор Верстки'//prompt('Как назыве�
 //let servicePrice1 = +prompt('Сколько это будет стоить (руб.)?');
 // let service2 = prompt('Какой ещё дополнительный тип услуги нужен?');
 //let servicePrice2 = +prompt('Сколько ещё это будет стоить (руб.?)');
-
+let fullPrice = 200//screenPrice + allServicePrices;
 const rollback = 15;
 const kursDoll = 92; //задаю курс доллара (Урок 2)
 const kursGriv = 25; //задаю курс гривны (Урок 2)
 const kursYuan = 12.8; //задаю курс юани (Урок 2)
-// let servicePercentPrice = fullPrice - (fullPrice*(rollback/100));
+
 
 // определение функций
 // const showTypeOf = function(variable){
 // console.log(variable, typeof variable)
 // }
 
-function getTitle(w) {
-  return ((w.trimStart()).toUpperCase()).slice(0,1) + w.trimStart().substring(1) 
-}
+// function getTitle(w) {
+//   return ((w.trimStart()).toUpperCase()).slice(0,1) + w.trimStart().substring(1) 
+// }
 
 
 // const getallServicePrices = function(x, y) {
@@ -32,6 +32,11 @@ function getTitle(w) {
 //     return a + b;
 // }
 // функционал
+let getServicePercentPrices = function(c, d) {
+    return c - (c*(d/100));
+}
+
+let servicePercentPrice = getServicePercentPrices(fullPrice, rollback);
 
 // function getRollbackMessage(price) {
 //     switch (true) {
@@ -58,15 +63,15 @@ function getTitle(w) {
            
 
 // let allServicePrices = getallServicePrices(servicePrice1, servicePrice2);
-// let fullPrice = screenPrice + allServicePrices;
+
 // // блок вывода(мусор)
-console.log(getTitle(title));
+//console.log(getTitle(title));
 
 // console.log("п. 3.7 Доп. сервис1: " + service1 + " Цена: " + servicePrice1 + " руб.");
 //console.log("п. 3.7 Доп. сервис2: " + service2 + " Цена: " + servicePrice2 + " руб.");
 // console.log("п. 3.8 Стоимость разработки сайта " + fullPrice.toFixed(2) + " руб./ " + (fullPrice/kursDoll).toFixed(2) + " дол./ " + (fullPrice/kursGriv).toFixed(2) + " гр./ " + (fullPrice/kursYuan).toFixed(2) + " юан. ");
 // console.log("п. 2.2.4 Откат посреднику " + rollback + "%: " + (fullPrice*(rollback/100)).toFixed(2) + " руб."); 
-// console.log("п. 3.9 Цена за вычетом отката: " + Math.ceil(servicePercentPrice) + " руб.");
+console.log("п. 3.9 Цена за вычетом отката: " + Math.ceil(servicePercentPrice) + " руб.");//servicePercentPrice = fullPrice - (fullPrice*(rollback/100))
 // console.log(getRollbackMessage(fullPrice));
 // console.log(allServicePrices);
 
