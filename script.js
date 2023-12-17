@@ -74,6 +74,6 @@ console.log("Доп. сервис2: " + service2 + " Цена: " + servicePrice2
 console.log("Откат посреднику " + rollback + "%: " + (fullPrice*(rollback/100)).toFixed(2) + " руб."); 
 console.log("Цена за вычетом отката: " + Math.ceil(servicePercentPrice) + " руб.");//формула, чтобы не забыть - servicePercentPrice = fullPrice - (fullPrice*(rollback/100))
 console.log(getRollbackMessage(fullPrice));
-//console.log(allServicePrices); пока решил не убирать???
+//.console.log(allServicePrices); пока решил не убирать???
 
 
