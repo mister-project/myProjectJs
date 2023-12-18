@@ -14,15 +14,28 @@ let servicePercentPrice;
 let service1;
 let service2;
 
-
+console.log("    ".trim().length);
 // определение функций
+
+
+const isNumber = function(num) {
+    return !isNaN(parseFloat(num) && isFinite(num));
+}
 
 const asking = function() {
      title = prompt('Как назывется ваш проект?', "Калькулятор верстки");
     screens = prompt('Какие типы экранов нужно разработать? (через запятую, пожалуйста)', "Простые, сложные");
-    screenPrice = +prompt('Сколько будет стоить данная работа (в руб.)?', 1500);
+    
+    screenPrice = prompt('Сколько будет стоить данная работа (в руб.)?');
+
+   while(!isNumber(screenPrice)) {
+    screenPrice = prompt('Сколько будет стоить данная работа (в руб.)?');
+   }
     adaptive = confirm('Нужен ли адаптив на сайте? (выберите нужную кнопку)');
+
+   
 }
+
 
 const showTypeOf = function(variable){
 console.log(variable, typeof variable)
