@@ -1,19 +1,24 @@
-'use strict';
+//'use strict';
 //объявление переменных
 let title = prompt('Как назывется ваш проект?');
 let screens = prompt('Какие типы экранов нужно разработать? (через запятую, пожалуйста)');
 let screenPrice = +prompt('Сколько будет стоить данная работа (в руб.)?');
-let adaptive = !!prompt('Нужен ли адаптив на сайте? (! Да - НАПИШИТЕ "Да", Нет - ОСТАВЬТЕ ПОЛЕ ПУСТЫМ ! )');
-let service1 = prompt('Какой дополнительный тип услуги нужен?');
-let servicePrice1 = +prompt('Сколько это будет стоить (руб.)?');
-let service2 = prompt('Какой ещё дополнительный тип услуги нужен?');
-let servicePrice2 = +prompt('Сколько ещё это будет стоить (руб.?)');
+let adaptive = confirm('Нужен ли адаптив на сайте? (выберите нужную кнопку)');
+
 
 const rollback = 15;
 const kursDoll = 92; //задаю курс доллара (Урок 2)
 const kursGriv = 25; //задаю курс гривны (Урок 2)
 const kursYuan = 12.8; //задаю курс юани (Урок 2)
 
+let allServicePrices;
+let fullPrice;
+let servicePercentPrice;
+
+let service1 = prompt('Какой дополнительный тип услуги нужен?');
+let servicePrice1 = +prompt('Сколько это будет стоить (руб.)?');
+let service2 = prompt('Какой ещё дополнительный тип услуги нужен?');
+let servicePrice2 = +prompt('Сколько ещё это будет стоить (руб.?)');
 
 // определение функций
 const showTypeOf = function(variable){
@@ -62,9 +67,9 @@ function getRollbackMessage(price) {
      showTypeOf(adaptive) 
            
 
-let allServicePrices = getallServicePrices(servicePrice1, servicePrice2);
-let fullPrice = screenPrice + allServicePrices;
-let servicePercentPrice = getServicePercentPrices(fullPrice, rollback);
+allServicePrices = getallServicePrices(servicePrice1, servicePrice2);
+fullPrice = screenPrice + allServicePrices;
+servicePercentPrice = getServicePercentPrices(fullPrice, rollback);
 // // блок вывода(мусор)
 
 
