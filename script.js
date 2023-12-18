@@ -30,31 +30,31 @@ function getTitle(w) {
 }
 
 
-const getallServicePrices = function(x, y) {
-    return x + y;
+const getallServicePrices = function() {
+    return servicePrice1 + servicePrice2;
 }
-function getFullPrice (a, b) {
-    return a + b;
+function getFullPrice () {
+    return screenPrice + allServicePrices;
 }
 // функционал
-let getServicePercentPrices = function(c, d) {
-    return c - (c*(d/100));
+const getServicePercentPrices = function() {
+    return fullPrice - (fullPrice * (rollback / 100));
 }
 
 
 
-function getRollbackMessage(price) {
+function getRollbackMessage() {
     switch (true) {
-        case price > 30000:
+        case fullPrice > 30000:
             return 'Даем скидку 10%';
             break;
-        case 15000 < price && price <= 30000:
+        case 15000 < fullPrice && fullPrice <= 30000:
             return 'Даем скидку 5%';
             break;
-        case 0 < price && price <= 15000:
+        case 0 < fullPrice && fullPrice <= 15000:
             return 'Скидка не предусмотрена';
             break;
-        case price  <= 0:
+        case fullPrice  <= 0:
             return 'Что-то пошло не так';
             break;
     }
@@ -67,18 +67,18 @@ function getRollbackMessage(price) {
      showTypeOf(adaptive) 
            
 
-allServicePrices = getallServicePrices(servicePrice1, servicePrice2);
-fullPrice = screenPrice + allServicePrices;
-servicePercentPrice = getServicePercentPrices(fullPrice, rollback);
-// // блок вывода(мусор)
+allServicePrices = getallServicePrices();
+fullPrice = getFullPrice();
+servicePercentPrice = getServicePercentPrices();
+// блок вывода(мусор)
 
 
 console.log("Доп. сервис1: " + service1 + " Цена: " + servicePrice1 + " руб.");
 console.log("Доп. сервис2: " + service2 + " Цена: " + servicePrice2 + " руб.");
 
-console.log("Откат посреднику " + rollback + "%: " + (fullPrice*(rollback/100)).toFixed(2) + " руб."); 
+console.log("Откат посреднику " + rollback + "%: " + (fullPrice * (rollback / 100)).toFixed(2) + " руб."); 
 console.log("Цена за вычетом отката: " + Math.ceil(servicePercentPrice) + " руб.");//формула, чтобы не забыть - servicePercentPrice = fullPrice - (fullPrice*(rollback/100))
-console.log(getRollbackMessage(fullPrice));
+console.log(getRollbackMessage());
 //.console.log(allServicePrices); пока решил не убирать???
 
 
