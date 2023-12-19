@@ -65,12 +65,16 @@ const getallServicePrices = function() {
             service2 = prompt('Какой ещё дополнительный тип услуги нужен?', 'услуга2');
             
         }
-        sum += +prompt('Сколько это будет стоить (руб.)?');          
-        console.log("isnumber-sum-до " + isNumber(sum));  
-        while (!isNumber(sum)) {
-              sum += +prompt('!надо ввести число..');
-              console.log("isnumber-sum-после " + isNumber(sum));     
+        let n = +prompt('Сколько это будет стоить (руб.)?');   
+        
+        while (!isNumber(n)) {
+            let n = +prompt('Введите число');    
+        //console.log("isnumber-sum-после " + !isNumber(n);     
         }
+
+
+        sum = n + sum;
+        
        
        
     }
