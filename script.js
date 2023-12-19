@@ -21,7 +21,7 @@ let service2;
 
 
 const isNumber = function(num) {
-    return isNaN(parseFloat(num) && isFinite(num));
+    return !isNaN(parseFloat(num) && isFinite(num));
     
 }
 console.log("isNumber_return: " + isNumber(screenPrice));// - вывод ЗНАЧЕНИЯ функции проверки на чило
@@ -34,7 +34,7 @@ function asking() {
 
     do {
         screenPrice = +prompt('Сколько будет стоить данная работа (в руб.)?', 31000).trim();
-    } while (isNumber(screenPrice));
+    } while (!isNumber(screenPrice));
     //ПРОМЕЖУТОЧНАЯ ПРОВЕРКА ЗНАЧЕНИЯ DO_WHILE1
     console.log(`isNumber_screenPrice: ${isNumber(screenPrice)}`);
 
@@ -66,20 +66,20 @@ const getallServicePrices = function() {
             
         }
         sum += +prompt('Сколько это будет стоить (руб.)?');          
-        
-        while (isNumber(sum)) {
-              sum = +prompt('!надо ввести число..');
-
+        console.log("isnumber-sum-до " + isNumber(sum));  
+        while (!isNumber(sum)) {
+              sum += +prompt('!надо ввести число..');
+              console.log("isnumber-sum-после " + isNumber(sum));     
         }
        
        
     }
         return sum;
         
-   // return servicePrice1 + servicePrice2;
+   
 }
         
-  
+  //console.log(sum, typeof(sum));
 
 function getFullPrice () {
   return screenPrice + allServicePrices;
