@@ -65,21 +65,22 @@ const getallServicePrices = function() {
             service2 = prompt('Какой ещё дополнительный тип услуги нужен?', 'услуга2');
             
         }
-       
+        sum += +prompt('Сколько это будет стоить (руб.)?');          
         
-        do {
-            sum += +prompt('2.Сколько это будет стоить (руб.)?').trim();
-            console.log('isNumber_getAllServicePrices:' + isNumber(sum));
-            console.log("услуга " + i++, sum + " ", typeof(sum)); //- промежуточный вывод стоимости доп. услуг (сумма накоплением поэтапно)
-            
-        } while (!isNumber(sum));
-        //sum += +prompt('1.Сколько это будет стоить (руб.)?', 4500);
-        console.log(sum); //- промежуточный вывод стоимости доп. услуг (сумма накоплением поэтапно)
+        while (isNumber(sum)) {
+              sum = +prompt('!надо ввести число..');
+
+        }
+       
+       
     }
         return sum;
         
    // return servicePrice1 + servicePrice2;
 }
+        
+  
+
 function getFullPrice () {
   return screenPrice + allServicePrices;
 }
