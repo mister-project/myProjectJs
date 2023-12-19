@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 //объявление переменных
 let title;
 let screens;
@@ -24,7 +24,8 @@ const isNumber = function(num) {
     return isNaN(parseFloat(num) && isFinite(num));
     
 }
-console.log("isNumber_return: " + isNumber(screenPrice)); 
+console.log("isNumber_return: " + isNumber(screenPrice));// - вывод ЗНАЧЕНИЯ функции проверки на чило
+
 function asking() {
     title = prompt('Как назывется ваш проект?', "Калькулятор верстки");
     screens = prompt('Какие типы экранов нужно разработать? (через запятую, пожалуйста)', "Простые, сложные");
@@ -34,8 +35,8 @@ function asking() {
     do {
         screenPrice = +prompt('Сколько будет стоить данная работа (в руб.)?', 31000).trim();
     } while (isNumber(screenPrice));
-    
-      console.log(`isNumber_do_while: ${isNumber(screenPrice)}`); 
+    //ПРОМЕЖУТОЧНАЯ ПРОВЕРКА ЗНАЧЕНИЯ DO_WHILE1
+    console.log(`isNumber_screenPrice: ${isNumber(screenPrice)}`);
 
     adaptive = confirm('Нужен ли адаптив на сайте? (выберите нужную кнопку)');
 
@@ -65,7 +66,15 @@ const getallServicePrices = function() {
             
         }
        
-        sum += +prompt('Сколько это будет стоить (руб.)?', 4500);
+        
+        do {
+            sum += +prompt('2.Сколько это будет стоить (руб.)?').trim();
+            console.log('isNumber_getAllServicePrices:' + isNumber(sum));
+            console.log("услуга " + i++, sum + " ", typeof(sum)); //- промежуточный вывод стоимости доп. услуг (сумма накоплением поэтапно)
+            
+        } while (!isNumber(sum));
+        //sum += +prompt('1.Сколько это будет стоить (руб.)?', 4500);
+        console.log(sum); //- промежуточный вывод стоимости доп. услуг (сумма накоплением поэтапно)
     }
         return sum;
         
@@ -133,6 +142,3 @@ console.log("Откат посреднику " + rollback + "%: " + (fullPrice *
 console.log("Цена за вычетом отката: " + Math.ceil(servicePercentPrice) + " руб.");//формула, чтобы не забыть - servicePercentPrice = fullPrice - (fullPrice*(rollback/100))
 console.log(getRollbackMessage(fullPrice));
 // console.log(typeof title);
-
-
-
