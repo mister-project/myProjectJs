@@ -1,4 +1,4 @@
-//'use strict';
+'use strict';
 //объявление переменных
 let title;
 let screens;
@@ -24,7 +24,7 @@ const isNumber = function(num) {
     return !isNaN(parseFloat(num) && isFinite(num));
     
 }
-console.log("isNumber_return: " + isNumber(screenPrice));// - вывод ЗНАЧЕНИЯ функции проверки на чило
+//console.log("isNumber_return: " + isNumber(screenPrice));// - вывод ЗНАЧЕНИЯ функции проверки на чило
 
 function asking() {
     title = prompt('Как назывется ваш проект?', "Калькулятор верстки");
@@ -36,7 +36,7 @@ function asking() {
         screenPrice = +prompt('Сколько будет стоить данная работа (в руб.)?', 31000).trim();
     } while (!isNumber(screenPrice));
     //ПРОМЕЖУТОЧНАЯ ПРОВЕРКА ЗНАЧЕНИЯ DO_WHILE1
-    console.log(`isNumber_screenPrice: ${isNumber(screenPrice)}`);
+   // console.log(`isNumber_screenPrice: ${isNumber(screenPrice)}`);
 
     adaptive = confirm('Нужен ли адаптив на сайте? (выберите нужную кнопку)');
 
@@ -55,6 +55,7 @@ function getTitle(w) {
 
 const getallServicePrices = function() {
     let sum = 0;
+    let n = 0;
 
     for (let i = 0; i < 2; i++) {
 
@@ -65,15 +66,17 @@ const getallServicePrices = function() {
             service2 = prompt('Какой ещё дополнительный тип услуги нужен?', 'услуга2');
             
         }
-        let n = +prompt('Сколько это будет стоить (руб.)?');   
+         
+        do {
         
-        while (!isNumber(n)) {
-            let n = +prompt('Введите число');    
-        //console.log("isnumber-sum-после " + !isNumber(n);     
+        n = +prompt('Сколько это будет стоить (руб.)?');   
+        } while (!isNumber(n)) {
+            //let n = +prompt('Введите число');    
+           sum += n;
         }
 
 
-        sum = n + sum;
+        //sum = n + sum;
         
        
        
