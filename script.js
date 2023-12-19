@@ -14,27 +14,32 @@ let servicePercentPrice;
 let service1;
 let service2;
 
-console.log("    ".trim().length);
+//console.log("    ".trim().length); - эксперименты с удалением пробелов  
+
+
 // определение функций
 
 
 const isNumber = function(num) {
-    return !isNaN(parseFloat(num) && isFinite(num));
+    return isNaN(parseFloat(num) && isFinite(num));
+    
 }
-
-const asking = function() {
-     title = prompt('Как назывется ваш проект?', "Калькулятор верстки");
+console.log("isNumber_return: " + isNumber(screenPrice)); 
+function asking() {
+    title = prompt('Как назывется ваш проект?', "Калькулятор верстки");
     screens = prompt('Какие типы экранов нужно разработать? (через запятую, пожалуйста)', "Простые, сложные");
 
-    screenPrice = +prompt('Сколько будет стоить данная работа (в руб.)?', 31000);
+    //screenPrice = +prompt('Сколько будет стоить данная работа (в руб.)?');
 
-   while (!isNumber(screenPrice)) {
-    screenPrice = prompt('Сколько будет стоить данная работа (в руб.)?').trim()
-   
-   }
+    do {
+        screenPrice = +prompt('Сколько будет стоить данная работа (в руб.)?', 31000).trim();
+    } while (isNumber(screenPrice));
+    
+      console.log(`isNumber_do_while: ${isNumber(screenPrice)}`); 
+
     adaptive = confirm('Нужен ли адаптив на сайте? (выберите нужную кнопку)');
 
-   
+
 }
 
 
@@ -109,7 +114,6 @@ showTypeOf(screenPrice)
 showTypeOf(adaptive)
 
 // блок вывода(мусор)
-
 
 
 
