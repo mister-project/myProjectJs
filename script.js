@@ -14,17 +14,12 @@ let servicePercentPrice;
 let service1;
 let service2;
 
-//console.log("    ".trim().length); - эксперименты с удалением пробелов  
 
-
-// определение функций
-
-
+//isNumber()) функция проверки на чило
 const isNumber = function(num) {
     return !isNaN(parseFloat(num) && isFinite(num));
     
 }
-//console.log("isNumber_return: " + isNumber(screenPrice));// - вывод ЗНАЧЕНИЯ функции проверки на чило
 
 function asking() {
     title = prompt('Как назывется ваш проект?', "Калькулятор верстки");
@@ -35,8 +30,7 @@ function asking() {
     do {
         screenPrice = +prompt('Сколько будет стоить данная работа (в руб.)?', 31000).trim();
     } while (!isNumber(screenPrice));
-    //ПРОМЕЖУТОЧНАЯ ПРОВЕРКА ЗНАЧЕНИЯ DO_WHILE1
-   // console.log(`isNumber_screenPrice: ${isNumber(screenPrice)}`);
+   
 
     adaptive = confirm('Нужен ли адаптив на сайте? (выберите нужную кнопку)');
 
@@ -71,12 +65,12 @@ const getallServicePrices = function() {
         
         n = +prompt('Сколько это будет стоить (руб.)?');   
         } while (!isNumber(n)) {
-            //let n = +prompt('Введите число');    
+           // console.log(sum);  
            sum += n;
         }
 
 
-        //sum = n + sum;
+        
         
        
        
@@ -86,7 +80,7 @@ const getallServicePrices = function() {
    
 }
         
-  //console.log(sum, typeof(sum));
+  
 
 function getFullPrice () {
   return screenPrice + allServicePrices;
@@ -134,19 +128,19 @@ showTypeOf(adaptive)
 
 
 
-// console.log(typeof screenPrice);
-// console.log(typeof adaptive);
+
 console.log("Экраны: " + screens);
-//console.log("Количество экранов " + screens.length);
+
 
 console.log("Доп. сервис1: " + service1);
 console.log("Доп. сервис2: " + service2);
+
 console.log("allServicePrices ", allServicePrices + " руб."); 
-// console.log("Доп. сервис1: " + service1 + " Цена: " + servicePrice1 + " руб.");
-// console.log("Доп. сервис2: " + service2 + " Цена: " + servicePrice2 + " руб.");
-// console.log("стоимость верстки экранов: " + screenPrice + " руб. Стоимость разработки сайта " + fullPrice + " руб.");
+
+// стоимость верстки экранов: screenPrice + fullPrice );
 console.log("Полная стоимость " + fullPrice + " руб. ");
 console.log("Откат посреднику " + rollback + "%: " + (fullPrice * (rollback / 100)).toFixed(2) + " руб."); 
-console.log("Цена за вычетом отката: " + Math.ceil(servicePercentPrice) + " руб.");//формула, чтобы не забыть - servicePercentPrice = fullPrice - (fullPrice*(rollback/100))
+console.log("Цена за вычетом отката: " + Math.ceil(servicePercentPrice) + " руб.");
+//формула, чтобы не забыть servicePercentPrice = fullPrice - (fullPrice*(rollback/100))
 console.log(getRollbackMessage(fullPrice));
-// console.log(typeof title);
+
