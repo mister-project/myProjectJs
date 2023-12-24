@@ -49,10 +49,10 @@ function getTitle(w) {
 
 const getallServicePrices = function() {
     let sum = 0;
-    let n = 0;
+    
 
     for (let i = 0; i < 2; i++) {
-
+        let price = 0;
         if (i === 0) {
             service1 = prompt('Какой дополнительный тип услуги нужен?', 'услуга1')
                  
@@ -63,10 +63,11 @@ const getallServicePrices = function() {
          
         do {
         
-        n = +prompt('Сколько это будет стоить (руб.)?');   
-        } while (!isNumber(n)) {
+        price = prompt('Сколько это будет стоить (руб.)?');   
+        } while (!isNumber(price)) {
            // console.log(sum);  
-           sum += n;
+           
+           sum += +price;
         }
 
 
