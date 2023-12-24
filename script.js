@@ -16,6 +16,7 @@ const appData = {
     num: 0,
     sum: 0,
     n: 0,
+    price: 0,
     
 
     asking: function() {
@@ -24,13 +25,14 @@ const appData = {
        
         do {appData.screenPrice = +prompt('Сколько будет стоить данная работа (в руб.)?', 31000).trim()
         } while (!appData.isNumber(appData.screenPrice));
-       console.log(typeof(appData.screenPrice))
+       
+       
     
         appData.adaptive = confirm('Нужен ли адаптив на сайте? (выберите нужную кнопку)');
         
     },
 //В названии проекта удаление пробелов + отделение первой буквы, превращение в заглавную и присоединении остальной части названия проекта
-   getTitle: function() {
+    getTitle: function() {
         return ((appData.title.trimStart()).toUpperCase()).slice(0,1) + appData.title.trimStart().toLowerCase().substring(1)
         
       },
@@ -39,8 +41,8 @@ const appData = {
     return !isNaN(parseFloat(num) && isFinite(num))
     
         },
-        //метод - цикл для ввода и валидации доп. услуг 
-        getallServicePrices: function() {
+    //метод - цикл для ввода и валидации доп. услуг 
+    getallServicePrices: function() {
               
     
             for (let i = 0; i < 2; i++) {
@@ -73,48 +75,54 @@ const appData = {
       getFullPrice: function() {
         return appData.screenPrice + appData.allServicePrices;
       },
+
+      //метод подсчета стоимости за вычетом отката
+      getServicePercentPrices: function() {
+        return appData.fullPrice - (appData.fullPrice * (appData.rollback / 100))
+    },
+    // Расчет скидки в зависимости от суммы
+    getRollbackMessage: function(price) {
+        switch (true) {
+            case price > 30000:
+                return 'Даем скидку 10%';
+                break;
+            case 15000 < price && price <= 30000:
+                return 'Даем скидку 5%';
+                break;
+            case 0 < price && price <= 15000:
+                return 'Скидка не предусмотрена';
+                break;
+            case price  <= 0:
+                return 'Что-то пошло не так';
+                break;
+        }
+    }
 } //КОНЕЦ ОБЬЕКТА
 
 
 let stub = {
-     
+    
+         
 
 }
     
   
 
 // функционал
-const getServicePercentPrices = function() {
-    return appData.fullPrice - (appData.fullPrice * (appData.rollback / 100));
-}
 
 
 
-function getRollbackMessage(price) {
-    switch (true) {
-        case price > 30000:
-            return 'Даем скидку 10%';
-            break;
-        case 15000 < price && price <= 30000:
-            return 'Даем скидку 5%';
-            break;
-        case 0 < price && price <= 15000:
-            return 'Скидка не предусмотрена';
-            break;
-        case price  <= 0:
-            return 'Что-то пошло не так';
-            break;
-    }
-}
+
+
        
    
            
 appData.asking();
 appData.allServicePrices = appData.getallServicePrices();
 appData.fullPrice = appData.getFullPrice();
-appData.servicePercentPrice = getServicePercentPrices();
+appData.servicePercentPrice = appData.getServicePercentPrices();
 
-getRollbackMessage()
+appData.getRollbackMessage()
 
 
 
@@ -123,6 +131,7 @@ getRollbackMessage()
 console.log(appData.getTitle());
 console.log(appData.fullPrice);
 console.log(appData.servicePercentPrice);
+console.log(appData.getRollbackMessage(appData.fullPrice));
 
 
 
