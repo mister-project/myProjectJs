@@ -13,6 +13,7 @@ const appData = {
     servicePercentPrice: 0,
     service1: '',
     service2: '',
+    
 
     asking: function() {
         appData.title = prompt('Как назывется ваш проект?', "Калькулятор верстки");
@@ -24,9 +25,13 @@ const appData = {
        
     
         appData.adaptive = confirm('Нужен ли адаптив на сайте? (выберите нужную кнопку)');
-    
-    
-    }
+        
+    },
+//В названии проекта удаление пробелов + отделение первой буквы, превращение в заглавную и присоединении остальной части названия проекта
+   getTitle: function() {
+        return ((appData.title.trimStart()).toUpperCase()).slice(0,1) + appData.title.trimStart().toLowerCase().substring(1)
+        //toLowerCase - возвращает значение вызванной строки, переведенной в нижний регистр.
+      },
 }
 
 //isNumber()) функция проверки на чило
@@ -39,9 +44,7 @@ const isNumber = function(num) {
 
 
 
-function getTitle(w) {
-  return ((w.trimStart()).toUpperCase()).slice(0,1) + w.trimStart().substring(1) 
-}
+
 
 
 const getallServicePrices = function() {
@@ -49,7 +52,7 @@ const getallServicePrices = function() {
     
 
     for (let i = 0; i < 2; i++) {
-        let price = 0;
+        let n = 0;
         if (i === 0) {
             appData.service1 = prompt('Какой дополнительный тип услуги нужен?', 'услуга1')
                  
@@ -60,11 +63,11 @@ const getallServicePrices = function() {
          
         do {
         
-        price = prompt('Сколько это будет стоить (руб.)?');   
-        } while (!isNumber(price)) {
+        n = prompt('Сколько это будет стоить (руб.)?', 4500);   
+        } while (!isNumber(n)) {
            // console.log(sum);  
            
-           sum += +price;
+           sum += +n;
         }
 
 
@@ -122,6 +125,7 @@ getRollbackMessage()
 
 // блок вывода(мусор)
 
+console.log(appData.getTitle());
 console.log(appData.fullPrice);
 console.log(appData.servicePercentPrice);
 
