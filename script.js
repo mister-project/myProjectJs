@@ -13,16 +13,16 @@ const appData = {
     servicePercentPrice: 0,
     service1: '',
     service2: '',
+    num: 0,
     
 
     asking: function() {
         appData.title = prompt('Как назывется ваш проект?', "Калькулятор верстки");
         appData.screens = prompt('Какие типы экранов нужно разработать? (через запятую, пожалуйста)', "Простые, сложные");
        
-        do {
-            appData.screenPrice = +prompt('Сколько будет стоить данная работа (в руб.)?', 31000).trim();
-        } while (!isNumber(appData.screenPrice));
-       
+        do {appData.screenPrice = +prompt('Сколько будет стоить данная работа (в руб.)?', 31000).trim()
+        } while (!appData.isNumber(appData.screenPrice));
+       console.log(typeof(appData.screenPrice))
     
         appData.adaptive = confirm('Нужен ли адаптив на сайте? (выберите нужную кнопку)');
         
@@ -32,26 +32,21 @@ const appData = {
         return ((appData.title.trimStart()).toUpperCase()).slice(0,1) + appData.title.trimStart().toLowerCase().substring(1)
         
       },
-      
+      //isNumber()) функция проверки на чило
+    isNumber: function(num) {
+    return !isNaN(parseFloat(num) && isFinite(num))
+    
+        },
       //метод для сложения итоговой стоимости (без отката)
       getFullPrice: function() {
         return appData.screenPrice + appData.allServicePrices;
-      }
+      },
+} //КОНЕЦ ОБЬЕКТА
+
+
+let stub = {
+
 }
-
-//isNumber()) функция проверки на чило
-const isNumber = function(num) {
-    return !isNaN(parseFloat(num) && isFinite(num));
-    
-}
-
-
-
-
-
-
-
-
 const getallServicePrices = function() {
     let sum = 0;
     
@@ -69,27 +64,20 @@ const getallServicePrices = function() {
         do {
         
         n = prompt('Сколько это будет стоить (руб.)?', 4500);   
-        } while (!isNumber(n)) {
+        } while (!appData.isNumber(n)) {
            // console.log(sum);  
            
            sum += +n;
-        }
-
-
+        }       
         
-        
-       
+      
        
     }
         return sum;
         
    
-}
-        
+}      
   
-
-
-
 
 // функционал
 const getServicePercentPrices = function() {
