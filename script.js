@@ -38,9 +38,6 @@ function asking() {
 }
 
 
-const showTypeOf = function(variable){
-console.log('variable', variable, typeof variable)
-}
 
 function getTitle(w) {
   return ((w.trimStart()).toUpperCase()).slice(0,1) + w.trimStart().substring(1) 
@@ -121,9 +118,7 @@ servicePercentPrice = getServicePercentPrices();
 
 getRollbackMessage()
 
-showTypeOf(title)
-showTypeOf(screenPrice)
-showTypeOf(adaptive)
+
 
 // блок вывода(мусор)
 
