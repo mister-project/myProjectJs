@@ -30,8 +30,13 @@ const appData = {
 //В названии проекта удаление пробелов + отделение первой буквы, превращение в заглавную и присоединении остальной части названия проекта
    getTitle: function() {
         return ((appData.title.trimStart()).toUpperCase()).slice(0,1) + appData.title.trimStart().toLowerCase().substring(1)
-        //toLowerCase - возвращает значение вызванной строки, переведенной в нижний регистр.
+        
       },
+      
+      //метод для сложения итоговой стоимости (без отката)
+      getFullPrice: function() {
+        return appData.screenPrice + appData.allServicePrices;
+      }
 }
 
 //isNumber()) функция проверки на чило
@@ -83,9 +88,7 @@ const getallServicePrices = function() {
         
   
 
-function getFullPrice () {
-  return appData.screenPrice + appData.allServicePrices;
-}
+
 
 
 // функционал
@@ -116,7 +119,7 @@ function getRollbackMessage(price) {
            
 appData.asking();
 appData.allServicePrices = getallServicePrices();
-appData.fullPrice = getFullPrice();
+appData.fullPrice = appData.getFullPrice();
 appData.servicePercentPrice = getServicePercentPrices();
 
 getRollbackMessage()
