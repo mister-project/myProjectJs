@@ -14,6 +14,8 @@ const appData = {
     service1: '',
     service2: '',
     num: 0,
+    sum: 0,
+    n: 0,
     
 
     asking: function() {
@@ -37,6 +39,36 @@ const appData = {
     return !isNaN(parseFloat(num) && isFinite(num))
     
         },
+        //метод - цикл для ввода и валидации доп. услуг 
+        getallServicePrices: function() {
+              
+    
+            for (let i = 0; i < 2; i++) {
+                
+                if (i === 0) {
+                    appData.service1 = prompt('Какой дополнительный тип услуги нужен?', 'услуга1')
+                         
+                } else if (i===1) {
+                    appData.service2 = prompt('Какой ещё дополнительный тип услуги нужен?', 'услуга2');
+                    
+                }
+                 
+                do {
+                
+                appData.n = prompt('Сколько это будет стоить (руб.)?', 4500);   
+                } while (!appData.isNumber(appData.n)) {
+                   // console.log(sum);  
+                   
+                   appData.sum += +appData.n;
+                }       
+                
+              
+               
+            }
+                return appData.sum
+                
+           
+        },
       //метод для сложения итоговой стоимости (без отката)
       getFullPrice: function() {
         return appData.screenPrice + appData.allServicePrices;
@@ -45,38 +77,10 @@ const appData = {
 
 
 let stub = {
+     
 
 }
-const getallServicePrices = function() {
-    let sum = 0;
     
-
-    for (let i = 0; i < 2; i++) {
-        let n = 0;
-        if (i === 0) {
-            appData.service1 = prompt('Какой дополнительный тип услуги нужен?', 'услуга1')
-                 
-        } else if (i===1) {
-            appData.service2 = prompt('Какой ещё дополнительный тип услуги нужен?', 'услуга2');
-            
-        }
-         
-        do {
-        
-        n = prompt('Сколько это будет стоить (руб.)?', 4500);   
-        } while (!appData.isNumber(n)) {
-           // console.log(sum);  
-           
-           sum += +n;
-        }       
-        
-      
-       
-    }
-        return sum;
-        
-   
-}      
   
 
 // функционал
@@ -106,7 +110,7 @@ function getRollbackMessage(price) {
    
            
 appData.asking();
-appData.allServicePrices = getallServicePrices();
+appData.allServicePrices = appData.getallServicePrices();
 appData.fullPrice = appData.getFullPrice();
 appData.servicePercentPrice = getServicePercentPrices();
 
