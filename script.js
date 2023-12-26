@@ -3,10 +3,10 @@
 
 
 const appData = {
-    title: '',
+    //title: '',
     screens: '',
-    screenPrice: 0,
-    adaptive: true,
+    //screenPrice: 0,
+    //adaptive: true,
     rollback: 15,
     allServicePrices: 0,
     fullPrice: 0,
@@ -27,8 +27,7 @@ const appData = {
         do {appData.screenPrice = +prompt('Сколько будет стоить данная работа (в руб.)?', 31000).trim()
         } while (!appData.isNumber(appData.screenPrice));
        
-       
-    
+           
         appData.adaptive = confirm('Нужен ли адаптив на сайте? (выберите нужную кнопку)');
         
     },
@@ -100,31 +99,23 @@ const appData = {
         
     },  
 
-    // logger: function () {
-    //     for (const key in appData) {
-    //       console.log("Ключ: " + key + " значение: " + appData[key]);
-    //     }
-    //   },
+    logger: function () {
+        for (const key in appData) {
+          console.log("Ключ: " + key + " значение: " + appData[key]);
+        }
+      },
     
       // --Блок функционала--
       start: function () {
         appData.asking()
-       //appData.getallServicePrices()
         appData.allServicePrices = appData.getallServicePrices()
         appData.fullPrice = appData.getFullPrice();
         appData.servicePercentPrice = appData.getServicePercentPrices();
         appData.rollbackMessage = appData.getRollbackMessage(appData.fullPrice)
-        
-       
-        // this.getScreens();
-        // this.getScreenPrice();
-        // this.getAdaptive;
-        // this.getAllServicePrices();
-        // this.fullPrice = this.getFullPrice();
-        // this.rollPec = this.getRollPec();
-        
-        // this.logger();
-        //console.log(this.title);
+        appData.logger()       
+            
+               
+      
       },
     };
     
@@ -140,17 +131,16 @@ appData.start();
 //блок вывода(мусор)
 
 
-console.log(appData.title);
-console.log("screens:" + appData.screens);
-console.log("screenPrice:" + appData.screenPrice);
-console.log('adaptive:' + appData.adaptive);
-
-console.log("service1: " + appData.service1);
-console.log("service2: " + appData.service2);
-console.log("allServicePrices: " + appData.allServicePrices);
-console.log("fullPrice:" + appData.fullPrice);
-console.log("rollback: " + appData.rollback);
-console.log("servicePercentPrice: " + appData.servicePercentPrice);
-console.log("rollbackMessage: " + appData.rollbackMessage);
+// console.log(appData.title);
+// console.log("screens:" + appData.screens);
+// console.log("screenPrice:" + appData.screenPrice);
+// console.log('adaptive:' + appData.adaptive);
+// console.log("service1: " + appData.service1);
+// console.log("service2: " + appData.service2);
+// console.log("allServicePrices: " + appData.allServicePrices);
+// console.log("fullPrice:" + appData.fullPrice);
+// console.log("rollback: " + appData.rollback);
+// console.log("servicePercentPrice: " + appData.servicePercentPrice);
+// console.log("rollbackMessage: " + appData.rollbackMessage);
 
 
