@@ -17,6 +17,7 @@ const appData = {
     sum: 0,
     n: 0,
     price: 0,
+    rollbackMessage: 0,
     
 
     asking: function() {
@@ -96,43 +97,60 @@ const appData = {
                 return 'Что-то пошло не так';
                 break;
         }
-    }
-} //КОНЕЦ ОБЬЕКТА
+        
+    },  
 
-
-let stub = {
+    // logger: function () {
+    //     for (const key in appData) {
+    //       console.log("Ключ: " + key + " значение: " + appData[key]);
+    //     }
+    //   },
     
-         
-
-}
+      // --Блок функционала--
+      start: function () {
+        appData.asking()
+       //appData.getallServicePrices()
+        appData.allServicePrices = appData.getallServicePrices()
+        appData.fullPrice = appData.getFullPrice();
+        appData.servicePercentPrice = appData.getServicePercentPrices();
+        appData.rollbackMessage = appData.getRollbackMessage(appData.fullPrice)
+        
+       
+        // this.getScreens();
+        // this.getScreenPrice();
+        // this.getAdaptive;
+        // this.getAllServicePrices();
+        // this.fullPrice = this.getFullPrice();
+        // this.rollPec = this.getRollPec();
+        
+        // this.logger();
+        //console.log(this.title);
+      },
+    };
     
+   
+ //КОНЕЦ ОБЬЕКТА appData    
   
 
 // функционал
 
+appData.start();      
 
 
+//блок вывода(мусор)
 
 
-       
-   
-           
-appData.asking();
-appData.allServicePrices = appData.getallServicePrices();
-appData.fullPrice = appData.getFullPrice();
-appData.servicePercentPrice = appData.getServicePercentPrices();
+console.log(appData.title);
+console.log("screens:" + appData.screens);
+console.log("screenPrice:" + appData.screenPrice);
+console.log('adaptive:' + appData.adaptive);
 
-appData.getRollbackMessage()
-
-
-
-// блок вывода(мусор)
-
-console.log(appData.getTitle());
-console.log(appData.fullPrice);
-console.log(appData.servicePercentPrice);
-console.log(appData.getRollbackMessage(appData.fullPrice));
-
-
+console.log("service1: " + appData.service1);
+console.log("service2: " + appData.service2);
+console.log("allServicePrices: " + appData.allServicePrices);
+console.log("fullPrice:" + appData.fullPrice);
+console.log("rollback: " + appData.rollback);
+console.log("servicePercentPrice: " + appData.servicePercentPrice);
+console.log("rollbackMessage: " + appData.rollbackMessage);
 
 
