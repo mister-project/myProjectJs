@@ -3,22 +3,38 @@
 
 
 const appData = {
-    //title: '',
+    title: '',
     screens: '',
-    //screenPrice: 0,
-    //adaptive: true,
+    screenPrice: 0,
+    adaptive: true,
     rollback: 15,
     allServicePrices: 0,
     fullPrice: 0,
     servicePercentPrice: 0,
     service1: '',
     service2: '',
-    num: 0,
-    sum: 0,
+    //num: 0,
     n: 0,
-    price: 0,
-    rollbackMessage: 0,
+    sum: 0,
     
+    //price: 0,
+    rollbackMessage: 0,
+    start: function () {
+        appData.asking()
+        appData.allServicePrices = appData.getallServicePrices()
+        appData.fullPrice = appData.getFullPrice();
+        appData.servicePercentPrice = appData.getServicePercentPrices();
+        appData.title = appData.getTitle()
+        appData.rollbackMessage = appData.getRollbackMessage(appData.fullPrice)
+       
+        appData.logger()                   
+      
+      },
+         //isNumber()) функция проверки на чило
+    isNumber: function(num) {
+        return !isNaN(parseFloat(num) && isFinite(num))
+        
+        },
 
     asking: function() {
         appData.title = prompt('Как назывется ваш проект?', "Калькулятор верстки");
@@ -36,11 +52,7 @@ const appData = {
         return ((appData.title.trimStart()).toUpperCase()).slice(0,1) + appData.title.trimStart().toLowerCase().substring(1)
         
       },
-      //isNumber()) функция проверки на чило
-    isNumber: function(num) {
-    return !isNaN(parseFloat(num) && isFinite(num))
-    
-        },
+   
     //метод - цикл для ввода и валидации доп. услуг 
     getallServicePrices: function() {
               
@@ -106,17 +118,7 @@ const appData = {
       },
     
       // --Блок функционала--
-      start: function () {
-        appData.asking()
-        appData.allServicePrices = appData.getallServicePrices()
-        appData.fullPrice = appData.getFullPrice();
-        appData.servicePercentPrice = appData.getServicePercentPrices();
-        appData.rollbackMessage = appData.getRollbackMessage(appData.fullPrice)
-        appData.logger()       
-            
-               
-      
-      },
+     
     };
     
    
@@ -131,16 +133,6 @@ appData.start();
 //блок вывода(мусор)
 
 
-// console.log(appData.title);
-// console.log("screens:" + appData.screens);
-// console.log("screenPrice:" + appData.screenPrice);
-// console.log('adaptive:' + appData.adaptive);
-// console.log("service1: " + appData.service1);
-// console.log("service2: " + appData.service2);
-// console.log("allServicePrices: " + appData.allServicePrices);
-// console.log("fullPrice:" + appData.fullPrice);
-// console.log("rollback: " + appData.rollback);
-// console.log("servicePercentPrice: " + appData.servicePercentPrice);
-// console.log("rollbackMessage: " + appData.rollbackMessage);
+
 
 
