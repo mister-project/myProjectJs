@@ -1,5 +1,4 @@
 'use strict';
-//ур9. п1
 const h1 = document.getElementsByTagName("h1");
 console.log(h1);
 //ур9. п2
@@ -22,6 +21,9 @@ const spanRangeValue = document.querySelector(".rollback .range-value");
 console.log(spanRangeValue);
 const totalInput = document.getElementsByClassName("main-total__items")[0].querySelectorAll("input");
 console.log(totalInput);
+// ур 9. п.8
+let screens = document.querySelectorAll(".screen");
+console.log(screens);
 
 
 //объявление переменных
