@@ -18,6 +18,10 @@ const inputTypeRange = document.querySelector(".rollback [type='range']");
 console.log(inputTypeRange);
 // ур 9. п.6
 const spanRangeValue = document.querySelector(".rollback .range-value");
+// ур 9. п.7
+console.log(spanRangeValue);
+const totalInput = document.getElementsByClassName("main-total__items")[0].querySelectorAll("input");
+console.log(totalInput);
 
 
 //объявление переменных
