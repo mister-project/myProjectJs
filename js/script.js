@@ -1,7 +1,9 @@
 'use strict';
 //п. 1 дз
 const h1 = document.getElementsByTagName("h1");
-
+//ур9. п2
+const buttons = document.getElementsByClassName("handler_btn");
+console.log(buttons);
 
 
 
