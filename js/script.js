@@ -16,6 +16,8 @@ console.log(otherItemsNumber);
 //ур. 9. п.5
 const inputTypeRange = document.querySelector(".rollback [type='range']");
 console.log(inputTypeRange);
+// ур 9. п.6
+const spanRangeValue = document.querySelector(".rollback .range-value");
 
 
 //объявление переменных
