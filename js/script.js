@@ -1,10 +1,12 @@
 'use strict';
-//п. 1 дз
 const h1 = document.getElementsByTagName("h1");
+console.log(h1);
 //ур9. п2
-const buttons = document.getElementsByClassName("handler_btn");
-console.log(buttons);
-
+const buttonsBtn = document.getElementsByClassName("handler_btn");
+console.log(buttonsBtn);
+//ур. 9 п.3
+const buttonsPlus = document.querySelector(".screen-btn");
+console.log(buttonsPlus);
 
 
 //объявление переменных
