@@ -1,4 +1,5 @@
 'use strict';
+//ур9. п1
 const h1 = document.getElementsByTagName("h1");
 console.log(h1);
 //ур9. п2
@@ -7,6 +8,11 @@ console.log(buttonsBtn);
 //ур. 9 п.3
 const buttonsPlus = document.querySelector(".screen-btn");
 console.log(buttonsPlus);
+//ур. 9 п.4
+const otherItemsPercent = document.querySelectorAll(".other-items.percent");
+console.log(otherItemsPercent);
+const otherItemsNumber = document.querySelectorAll(".other-items.number");
+console.log(otherItemsNumber);
 
 
 //объявление переменных
