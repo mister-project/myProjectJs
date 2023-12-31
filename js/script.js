@@ -13,6 +13,9 @@ const otherItemsPercent = document.querySelectorAll(".other-items.percent");
 console.log(otherItemsPercent);
 const otherItemsNumber = document.querySelectorAll(".other-items.number");
 console.log(otherItemsNumber);
+//ур. 9. п.5
+const inputTypeRange = document.querySelector(".rollback [type='range']");
+console.log(inputTypeRange);
 
 
 //объявление переменных
