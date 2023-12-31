@@ -1,15 +1,7 @@
 'use strict';
 //п. 1 дз
-const header = document.getElementsByTagName("h1");
-const title = header[0].getElementsByTagName("h1")[0];
-const handler_btn = document.getElementsByClassName("handler_btn");
-const screen_btn = document.querySelector(".screen-btn");
-const otherTemsPercent = document.querySelectorAll(".other-items.percent");
-const otherTemsNumber = document.querySelectorAll(".other-items.number");
-const inputRange = document.querySelector(".rollback [type='range']");
-const span_range_value = document.querySelector(".rollback .range-value");
-const total_input = document.getElementsByClassName("main-total__items")[0].querySelectorAll("input");
-let screen = document.querySelectorAll(".screen");
+const h1 = document.getElementsByTagName("h1");
+
 
 
 
