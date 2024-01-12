@@ -69,7 +69,7 @@ isNumber: function(num) {
     },
        
     addScreens: function() {
-
+console.log('add screens')
     }, 
 
     asking: function() {
