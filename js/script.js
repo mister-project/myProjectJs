@@ -44,6 +44,7 @@ const appData = {
         appData.addTitle()
         
         buttonsBtn.addEventListener('click', appData.start)
+        buttonsPlus.addEventListener('click', appData.addScreenBlock) 
     },
     addTitle: function() {
         document.title = title.textContent
@@ -62,10 +63,7 @@ const appData = {
       
       },
     //isNumber()) функция проверки на чило
-isNumber: function(num) {
-    return !isNaN(parseFloat(num) && isFinite(num))
-    
-    },
+
        
     addScreens: function() {
 screens.forEach(function(screen, index) {
@@ -81,37 +79,19 @@ screens.forEach(function(screen, index) {
    
 })
 
-console.log(appData.screens);
+
     }, 
+
+    addScreenBlock: function() {
+        const cloneScreen = screens[0].cloneNode(true)
+        console.log(cloneScreen);
+        screens[screens.length - 1].after(cloneScreen)
+    },
 
     asking: function() {
         
-        do {
-        appData.title = prompt('Как назывется ваш проект?', "Калькулятор верстки");
-        } while (appData.isNumber(appData.title));
-        // do {
-        //     price = prompt('Сколько будет стоить данная работа (в руб.)?', 31000).trim() //убрал + как у Саши
-        // } while (isNumber(price));
-
-        // изменения ур. 8 фОРМИРУЕМ новые циклы, массивы, обьекты(ниже)
-        for (let i = 0; i < 2; i++) {
-            do {
-            name = prompt('Какие типы экранов нужно разработать?' )
-            }  while (appData.isNumber(name));
-            let price = 0;
-
-            do {
-                price = prompt('Сколько будет стоить данная работа (в руб.)?', 31000).trim() //убрал + как у Саши
-            } while (!appData.isNumber(price));
-
-            appData.screens.push({ id: i, name: name, price: price })
-        }
-      
-        
-
-        //ур8. новые циклы конец
-
-        //Начало цикла for
+         
+        //Начало цикла for по выбору доп. услуг
         for (let i = 0; i < 2; i++) {
             do {
             name = prompt('Какой дополнительный тип услуги нужен?', 'услуга1')  
@@ -125,10 +105,8 @@ console.log(appData.screens);
               
                
                appData.services[name[i]] = +price
-            }          
+            }        
           
-                appData.adaptive = confirm('Нужен ли адаптив на сайте? (выберите нужную кнопку)');        
-    
 },
 
 
