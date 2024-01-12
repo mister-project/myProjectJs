@@ -25,7 +25,6 @@ const totalInput = document.getElementsByClassName("main-total__items")[0].query
 let screens = document.querySelectorAll(".screen");
 
 
-
 //объявление переменных
 
 
@@ -50,7 +49,7 @@ const appData = {
         document.title = title.textContent
     },
     start: function () {
-        alert('Старт')
+        
         appData.addScreens()
         // appData.asking()
         // appData.addPrices()
@@ -69,7 +68,14 @@ isNumber: function(num) {
     },
        
     addScreens: function() {
-console.log('add screens')
+screens.forEach(function(screen) {
+    const select = screen.querySelector('select');
+    const input = screen.querySelector('input')
+
+    console.log(select.value)
+    console.log(input.value)
+
+})
     }, 
 
     asking: function() {
