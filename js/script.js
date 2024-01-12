@@ -194,9 +194,3 @@ isNumber: function(num) {
 appData.start(); 
 
 
-//блок вывода(мусор)
-// const result = screens.reduce(function(sum, item)) {
-//     return sum + item.price
-// }, 0)
-
-// console.log(result);
