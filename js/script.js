@@ -1,29 +1,29 @@
 'use strict';
-const h1 = document.getElementsByTagName("h1");
-console.log(h1);
+const h1 = document.getElementsByTagName("h1")[0];
+
 //ур9. п2
-const buttonsBtn = document.getElementsByClassName("handler_btn");
-console.log(buttonsBtn);
+const buttonsBtn = document.getElementsByClassName("handler_btn")[0];
+
 //ур. 9 п.3
 const buttonsPlus = document.querySelector(".screen-btn");
-console.log(buttonsPlus);
+
 //ур. 9 п.4
 const otherItemsPercent = document.querySelectorAll(".other-items.percent");
-console.log(otherItemsPercent);
+
 const otherItemsNumber = document.querySelectorAll(".other-items.number");
-console.log(otherItemsNumber);
+
 //ур. 9. п.5
 const inputTypeRange = document.querySelector(".rollback [type='range']");
-console.log(inputTypeRange);
+
 // ур 9. п.6
 const spanRangeValue = document.querySelector(".rollback .range-value");
 // ур 9. п.7
-console.log(spanRangeValue);
+
 const totalInput = document.getElementsByClassName("main-total__items")[0].querySelectorAll("input");
-console.log(totalInput);
+
 // ур 9. п.8
 let screens = document.querySelectorAll(".screen");
-console.log(screens);
+
 
 
 //объявление переменных
@@ -39,26 +39,38 @@ const appData = {
     fullPrice: 0,
     servicePercentPrice: 0,
     services: {},
-   
-    //num: 0,
-    
-   // sum: 0,
-    
-    //price: 0,
     rollbackMessage: 0,
+
+    init: function () {
+        appData.addTitle()
+        
+        buttonsBtn.addEventListener('click', appData.start)
+    },
+    addTitle: function() {
+        document.title = title.textContent
+    },
     start: function () {
-        appData.asking()
-        appData.addPrices()
-        appData.getFullPrice()
-        appData.getServicePercentPrices()
-        appData.getTitle()
-        appData.getRollbackMessage(appData.fullPrice)
+        alert('Старт')
+        appData.addScreens()
+        // appData.asking()
+        // appData.addPrices()
+        // appData.getFullPrice()
+        // appData.getServicePercentPrices()
+        // appData.getTitle()
+        // appData.getRollbackMessage(appData.fullPrice)
        
-        appData.logger() 
-                         
+       // appData.logger()                          
       
       },
-         
+    //isNumber()) функция проверки на чило
+isNumber: function(num) {
+    return !isNaN(parseFloat(num) && isFinite(num))
+    
+    },
+       
+    addScreens: function() {
+
+    }, 
 
     asking: function() {
         
@@ -82,8 +94,7 @@ const appData = {
 
             appData.screens.push({ id: i, name: name, price: price })
         }
-
-       
+      
         
 
         //ур8. новые циклы конец
@@ -109,11 +120,7 @@ const appData = {
 },
 
 
-//isNumber()) функция проверки на чило
-isNumber: function(num) {
-    return !isNaN(parseFloat(num) && isFinite(num))
-    
-    },
+
         addPrices: function() {
            
             //Считаем суммарную стоимость экранов в массиве screens через reduce        
@@ -169,10 +176,8 @@ isNumber: function(num) {
         for (const key in appData) {
           
         }
-
+     
         
-        
-
         console.log(appData.fullPrice);
         console.log(appData.servicePercentPrice);
         console.log(appData.screens); 
@@ -191,6 +196,6 @@ isNumber: function(num) {
   
 
 // функционал
-appData.start(); 
+appData.init(); 
 
 
