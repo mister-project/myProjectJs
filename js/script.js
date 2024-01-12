@@ -9,7 +9,6 @@ const buttonsPlus = document.querySelector(".screen-btn");
 
 //ур. 9 п.4
 const otherItemsPercent = document.querySelectorAll(".other-items.percent");
-
 const otherItemsNumber = document.querySelectorAll(".other-items.number");
 
 //ур. 9. п.5
@@ -52,6 +51,7 @@ const appData = {
     start: function () {
         
         appData.addScreens()
+        appData.addServices()
         // appData.asking()
         // appData.addPrices()
         // appData.getFullPrice()
@@ -80,6 +80,18 @@ screens.forEach(function(screen, index) {
 })
 console.log(appData.screens);
     }, 
+
+    addServices: function() {
+        otherItemsPercent.forEach(function (item){
+            const check = item.querySelector('input[type=checkbox]')
+            const label = item.querySelector('label')
+            const input = item.querySelector('input[type=text]')
+            console.log(check);
+            console.log(label);
+            console.log(input);
+        })
+
+    },
 
     addScreenBlock: function() {
         const cloneScreen = screens[0].cloneNode(true)
