@@ -33,7 +33,8 @@ const appData = {
     screenPrice: 0,
     adaptive: true,
     rollback: 15,
-    allServicePrices: 0,
+    servicePricesPercent: 0,
+    servicePricesNumber: 0,
     fullPrice: 0,
     servicePercentPrice: 0,
     servicesPercent: {},
@@ -53,17 +54,18 @@ const appData = {
         
         appData.addScreens()
         appData.addServices()
-        // appData.asking()
-        // appData.addPrices()
+        
+        appData.addPrices()
         // appData.getFullPrice()
         // appData.getServicePercentPrices()
-        // appData.getTitle()
+       
         // appData.getRollbackMessage(appData.fullPrice)
        
        // appData.logger()                          
-      
+      console.log(appData);
       },
-    //isNumber()) функция проверки на чило
+
+   
 
        
     addScreens: function() {
@@ -106,10 +108,8 @@ console.log(appData.screens);
             if(check.checked) {
                 appData.servicesNumber[label.textContent] = +input.value
 
-            }   
-            
-        })
-        console.log(appData);
+            }               
+        })      
 
     },
 
@@ -119,30 +119,7 @@ console.log(appData.screens);
         screens[screens.length - 1].after(cloneScreen)
     },
 
-    asking: function() {
-        
-         
-        //Начало цикла for по выбору доп. услуг
-        for (let i = 0; i < 2; i++) {
-            do {
-            name = prompt('Какой дополнительный тип услуги нужен?', 'услуга1')  
-        }  while (appData.isNumber(name));  
-            let price = 0;            
-             
-            do {
-            
-            price = prompt('Сколько это будет стоить (руб.)?', 4500);   
-            } while (!appData.isNumber(price)) 
-              
-               
-               appData.services[name[i]] = +price
-            }        
-          
-},
-
-
-
-        addPrices: function() {
+    addPrices: function() {
            
             //Считаем суммарную стоимость экранов в массиве screens через reduce        
            appData.screenPrice = appData.screens.reduce(function(sum, item) {      
@@ -150,9 +127,15 @@ console.log(appData.screens);
           }, 0)
           
              //метод - цикл для ввода и валидации доп. услуг
-            for(let key in appData.services){
-            appData.allServicePrices += appData.services[key]
+            for(let key in appData.servicesNumber){
+            appData.servicePricesNumber += appData.servicesNumber[key]
         }
+
+        for(let key in appData.servicesPercent){
+            appData.servicePricesPercent += appData.screenPrice *(appData.servicesPercent[key]/100);
+        }
+
+        appData.fullPrice = +appData.screenPrice + appData.servicePricesNumber + appData.servicePricesPercent;
     },
 
     
@@ -166,7 +149,7 @@ console.log(appData.screens);
    
       //метод для сложения итоговой стоимости (без отката)
       getFullPrice: function() {
-        appData.fullPrice = appData.screenPrice + appData.allServicePrices;
+       
       },
 
       //метод подсчета стоимости за вычетом отката
