@@ -3,23 +3,22 @@ const h1 = document.getElementsByTagName("h1")[0];
 
 //ур9. п2
 const buttonsBtn = document.getElementsByClassName("handler_btn")[0];
-
 //ур. 9 п.3
 const buttonsPlus = document.querySelector(".screen-btn");
-
 //ур. 9 п.4
 const otherItemsPercent = document.querySelectorAll(".other-items.percent");
 const otherItemsNumber = document.querySelectorAll(".other-items.number");
-
 //ур. 9. п.5
 const inputTypeRange = document.querySelector(".rollback [type='range']");
-
 // ур 9. п.6
 const spanRangeValue = document.querySelector(".rollback .range-value");
 // ур 9. п.7
-
 const totalInput = document.getElementsByClassName("main-total__items")[0].querySelectorAll("input");
-
+const total = document.getElementsByClassName('total-input')[0]
+const totalCount = document.getElementsByClassName('total-input')[1]
+const totalCountOther = document.getElementsByClassName('total-input')[2]
+const fullTotalCount = document.getElementsByClassName('total-input')[3]
+const totalCountRollback = document.getElementsByClassName('total-input')[4]
 // ур 9. п.8
 let screens = document.querySelectorAll(".screen");
 
@@ -56,17 +55,21 @@ const appData = {
         appData.addServices()
         
         appData.addPrices()
-        // appData.getFullPrice()
+        
         // appData.getServicePercentPrices()
        
         // appData.getRollbackMessage(appData.fullPrice)
        
        // appData.logger()                          
-      console.log(appData);
+     
+      appData.showResult();
       },
-
-   
-
+      
+      showResult: function () {
+        total.value = appData.screenPrice
+        totalCountOther.value = appData.servicePricesPercent + appData.servicePricesNumber
+        fullTotalCount.value = appData.fullPrice
+      },
        
     addScreens: function() {
         screens = document.querySelectorAll(".screen")
@@ -81,7 +84,7 @@ screens.forEach(function(screen, index) {
         price: +select.value * +input.value
     })   
 })
-console.log(appData.screens);
+
     }, 
 
     addServices: function() {
@@ -138,19 +141,6 @@ console.log(appData.screens);
         appData.fullPrice = +appData.screenPrice + appData.servicePricesNumber + appData.servicePricesPercent;
     },
 
-    
-//В названии проекта удаление пробелов + отделение первой буквы, превращение в заглавную и присоединении остальной части названия проекта
-    getTitle: function() {
-        appData.title = +((appData.title.trimStart()).toUpperCase()).slice(0,1) + appData.title.trimStart().toLowerCase().substring(1)
-        
-      },
-   
-    
-   
-      //метод для сложения итоговой стоимости (без отката)
-      getFullPrice: function() {
-       
-      },
 
       //метод подсчета стоимости за вычетом отката
       getServicePercentPrices: function() {
