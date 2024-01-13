@@ -36,7 +36,8 @@ const appData = {
     allServicePrices: 0,
     fullPrice: 0,
     servicePercentPrice: 0,
-    services: {},
+    servicesPercent: {},
+    servicesNumber: {},
     rollbackMessage: 0,
 
     init: function () {
@@ -89,7 +90,26 @@ console.log(appData.screens);
             console.log(check);
             console.log(label);
             console.log(input);
+            if(check.checked) {
+                appData.servicesPercent[label.textContent] = +input.value
+
+            }   
+            
         })
+        otherItemsNumber.forEach(function (item){
+            const check = item.querySelector('input[type=checkbox]')
+            const label = item.querySelector('label')
+            const input = item.querySelector('input[type=text]')
+            console.log(check);
+            console.log(label);
+            console.log(input);
+            if(check.checked) {
+                appData.servicesNumber[label.textContent] = +input.value
+
+            }   
+            
+        })
+        console.log(appData);
 
     },
 
