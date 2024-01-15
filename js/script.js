@@ -39,12 +39,15 @@ const appData = {
     servicesPercent: {},
     servicesNumber: {},
     rollbackMessage: 0,
+    isError: false,
 
+    
     init: function () {
         appData.addTitle()
         
         buttonsBtn.addEventListener('click', appData.start)
         buttonsPlus.addEventListener('click', appData.addScreenBlock) 
+       
     },
     addTitle: function() {
         document.title = title.textContent
@@ -55,7 +58,7 @@ const appData = {
         appData.addServices()
         
         appData.addPrices()
-        
+       
         // appData.getServicePercentPrices()
        
         // appData.getRollbackMessage(appData.fullPrice)
@@ -71,17 +74,36 @@ const appData = {
         fullTotalCount.value = appData.fullPrice
       },
        
+
+    
     addScreens: function() {
-        screens = document.querySelectorAll(".screen")
-screens.forEach(function(screen, index) {
+    screens = document.querySelectorAll(".screen"),
+    console.log(screens)
+    
+ 
+    screens.forEach(function(screen, index) {
+       
     const select = screen.querySelector('select');
     const input = screen.querySelector('input')
     const selectName = select.options[select.selectedIndex].textContent
+console.log(select.value)
+console.log(selectName)
+console.log(appData.isError)
+console.log(screen.length)
 
+////
+
+if (select.value.trim().length === 0 || input.value.trim().length === 0) {
+    appData.isError = true;
+    console.log(appData.isError);
+
+}
+    console.log(appData.isError);
     appData.screens.push({ 
         id: index, 
         name: selectName, 
         price: +select.value * +input.value
+        
     })   
 })
 
@@ -92,9 +114,9 @@ screens.forEach(function(screen, index) {
             const check = item.querySelector('input[type=checkbox]')
             const label = item.querySelector('label')
             const input = item.querySelector('input[type=text]')
-            console.log(check);
-            console.log(label);
-            console.log(input);
+            // console.log(check);
+            // console.log(label);
+            // console.log(input);
             if(check.checked) {
                 appData.servicesPercent[label.textContent] = +input.value
 
@@ -105,9 +127,9 @@ screens.forEach(function(screen, index) {
             const check = item.querySelector('input[type=checkbox]')
             const label = item.querySelector('label')
             const input = item.querySelector('input[type=text]')
-            console.log(check);
-            console.log(label);
-            console.log(input);
+            // console.log(check);
+            // console.log(label);
+            // console.log(input);
             if(check.checked) {
                 appData.servicesNumber[label.textContent] = +input.value
 
@@ -172,11 +194,11 @@ screens.forEach(function(screen, index) {
         }
      
         
-        console.log(appData.fullPrice);
-        console.log(appData.servicePercentPrice);
-        console.log(appData.screens); 
-         //вывод в консоль общей стоимости экранов       
-        console.log('Экраны_сумма: ' + appData.screenPrice);
+        // console.log(appData.fullPrice);
+        // console.log(appData.servicePercentPrice);
+        //console.log(appData.screens); 
+        //  //вывод в консоль общей стоимости экранов       
+        // console.log('Экраны_сумма: ' + appData.screenPrice);
 
       },
      
