@@ -22,7 +22,7 @@ const totalCountRollback = document.getElementsByClassName('total-input')[4]
 // ур 9. п.8
 let screens = document.querySelectorAll(".screen");
 
-
+//console.log('1')
 //объявление переменных
 
 
@@ -40,6 +40,7 @@ const appData = {
     servicesNumber: {},
     rollbackMessage: 0,
     isError: true,
+    sumScreens: 0,
 
     init: function () {
         appData.addTitle()
@@ -53,6 +54,7 @@ const appData = {
         document.title = title.textContent
     },
     start: function () {
+        appData.revise()
 
         if (appData.isError) {
             appData.addScreens();
@@ -72,11 +74,27 @@ const appData = {
         appData.showResult();
     },
 
-    showResult: function () {
-        total.value = appData.screenPrice
+    revise: () => {
+        screens = document.querySelectorAll(".screen")
+        screens.forEach((screen) => {
+            const select = screen.querySelector("select");
+            const input = screen.querySelector("input");
+            if (select.value.trim().length === 0 || input.value.trim().length === 0) {
+                appData.isError = false;
+                console.log('isError при выполнениее IF: ' + appData.isError);
+            }
+            select.addEventListener("change", appData.revise);
 
-        totalCountOther.value = appData.servicePricesPercent + appData.servicePricesNumber
-        fullTotalCount.value = appData.fullPrice
+        })
+    },
+
+
+    showResult: function () {
+        total.value = appData.screenPrice // вывод стоимости верстки
+        totalCount.value = appData.sumScreens // вывод суммы экранов
+
+        totalCountOther.value = appData.servicePricesPercent + appData.servicePricesNumber // вывод доп. услуг ( доп. сервисов)
+        fullTotalCount.value = appData.fullPrice // вывод Итоговой стоимости
     },
 
     addScreens: function () {
@@ -86,15 +104,13 @@ const appData = {
             const select = screen.querySelector('select');
             const input = screen.querySelector('input')
             const selectName = select.options[select.selectedIndex].textContent
-            if (select.value.trim().length === 0 || input.value.trim().length === 0) {
-                appData.isError = false;
-                console.log('isError при выполнениее IF: ' + appData.isError);
-            }
+
 
             appData.screens.push({
                 id: index,
                 name: selectName,
-                price: +select.value * +input.value
+                price: +select.value * +input.value,
+                count: input.value
 
             })
         })
@@ -142,7 +158,12 @@ const appData = {
         appData.screenPrice = appData.screens.reduce(function (sum, item) {
             return sum + (+item.price)
         }, 0)
-
+        console.log(appData.screens);
+        appData.sumScreens = appData.screens.reduce(function (sum, item) {
+            return sum + (+item.count)
+        }, 0)
+        console.log(appData.sumScreens);
+        console.log(appData.screenPrice);
         //метод - цикл для ввода и валидации доп. услуг
         for (let key in appData.servicesNumber) {
             appData.servicePricesNumber += appData.servicesNumber[key]
