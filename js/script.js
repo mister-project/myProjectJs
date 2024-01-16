@@ -12,6 +12,9 @@ const otherItemsNumber = document.querySelectorAll(".other-items.number");
 const inputTypeRange = document.querySelector(".rollback [type='range']");
 // ур 9. п.6
 const spanRangeValue = document.querySelector(".rollback .range-value");
+
+console.log(spanRangeValue)
+
 // ур 9. п.7
 const totalInput = document.getElementsByClassName("main-total__items")[0].querySelectorAll("input");
 const total = document.getElementsByClassName('total-input')[0]
@@ -49,6 +52,9 @@ const appData = {
             appData.start()
         })
         buttonsPlus.addEventListener('click', appData.addScreenBlock)
+        inputTypeRange.addEventListener('input', appData.rangeAssembled)
+        inputTypeRange.addEventListener('change', appData.rangeAssembled)
+        console.log(inputTypeRange.value);
     },
     addTitle: function () {
         document.title = title.textContent
@@ -72,6 +78,15 @@ const appData = {
         // appData.logger()                          
 
         appData.showResult();
+    },
+
+    rangeAssembled: (event) => {
+        spanRangeValue.innerText = event.target.value + "%"
+        console.log(event.target.value);
+        //console.log(appData.spanRangeValue.textContent);
+
+
+
     },
 
     revise: () => {
