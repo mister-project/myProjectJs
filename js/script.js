@@ -39,137 +39,129 @@ const appData = {
     servicesPercent: {},
     servicesNumber: {},
     rollbackMessage: 0,
-    isError: false,
+    isError: true,
 
-    
     init: function () {
         appData.addTitle()
-        
-        buttonsBtn.addEventListener('click', appData.start)
-        buttonsPlus.addEventListener('click', appData.addScreenBlock) 
-       
+
+        buttonsBtn.addEventListener('click', () => {
+            appData.start()
+        })
+        buttonsPlus.addEventListener('click', appData.addScreenBlock)
     },
-    addTitle: function() {
+    addTitle: function () {
         document.title = title.textContent
     },
     start: function () {
-        
-        appData.addScreens()
+
+        if (appData.isError) {
+            appData.addScreens();
+        }
+        console.log('isError в функции Start; ' + appData.isError)
+
         appData.addServices()
-        
+
         appData.addPrices()
-       
+
         // appData.getServicePercentPrices()
-       
+
         // appData.getRollbackMessage(appData.fullPrice)
-       
-       // appData.logger()                          
-     
-      appData.showResult();
-      },
-      
-      showResult: function () {
+
+        // appData.logger()                          
+
+        appData.showResult();
+    },
+
+    showResult: function () {
         total.value = appData.screenPrice
+
         totalCountOther.value = appData.servicePricesPercent + appData.servicePricesNumber
         fullTotalCount.value = appData.fullPrice
-      },
-       
+    },
 
-    
-    addScreens: function() {
-    screens = document.querySelectorAll(".screen"),
-    console.log(screens)
-    
- 
-    screens.forEach(function(screen, index) {
-       
-    const select = screen.querySelector('select');
-    const input = screen.querySelector('input')
-    const selectName = select.options[select.selectedIndex].textContent
-console.log(select.value)
-console.log(selectName)
-console.log(appData.isError)
-console.log(screen.length)
+    addScreens: function () {
 
-////
+        screens = document.querySelectorAll(".screen")
+        screens.forEach(function (screen, index) {
+            const select = screen.querySelector('select');
+            const input = screen.querySelector('input')
+            const selectName = select.options[select.selectedIndex].textContent
+            if (select.value.trim().length === 0 || input.value.trim().length === 0) {
+                appData.isError = false;
+                console.log('isError при выполнениее IF: ' + appData.isError);
+            }
 
-if (select.value.trim().length === 0 || input.value.trim().length === 0) {
-    appData.isError = true;
-    console.log(appData.isError);
+            appData.screens.push({
+                id: index,
+                name: selectName,
+                price: +select.value * +input.value
 
-}
-    console.log(appData.isError);
-    appData.screens.push({ 
-        id: index, 
-        name: selectName, 
-        price: +select.value * +input.value
-        
-    })   
-})
-
-    }, 
-
-    addServices: function() {
-        otherItemsPercent.forEach(function (item){
-            const check = item.querySelector('input[type=checkbox]')
-            const label = item.querySelector('label')
-            const input = item.querySelector('input[type=text]')
-            // console.log(check);
-            // console.log(label);
-            // console.log(input);
-            if(check.checked) {
-                appData.servicesPercent[label.textContent] = +input.value
-
-            }   
-            
+            })
         })
-        otherItemsNumber.forEach(function (item){
-            const check = item.querySelector('input[type=checkbox]')
-            const label = item.querySelector('label')
-            const input = item.querySelector('input[type=text]')
-            // console.log(check);
-            // console.log(label);
-            // console.log(input);
-            if(check.checked) {
-                appData.servicesNumber[label.textContent] = +input.value
-
-            }               
-        })      
 
     },
 
-    addScreenBlock: function() {
+    addServices: function () {
+        otherItemsPercent.forEach(function (item) {
+            const check = item.querySelector('input[type=checkbox]')
+            const label = item.querySelector('label')
+            const input = item.querySelector('input[type=text]')
+            // console.log(check);
+            // console.log(label);
+            // console.log(input);
+            if (check.checked) {
+                appData.servicesPercent[label.textContent] = +input.value
+
+            }
+
+        })
+        otherItemsNumber.forEach(function (item) {
+            const check = item.querySelector('input[type=checkbox]')
+            const label = item.querySelector('label')
+            const input = item.querySelector('input[type=text]')
+            // console.log(check);
+            // console.log(label);
+            // console.log(input);
+            if (check.checked) {
+                appData.servicesNumber[label.textContent] = +input.value
+
+            }
+        })
+
+    },
+
+    addScreenBlock: function () {
         const cloneScreen = screens[0].cloneNode(true)
-       
+
         screens[screens.length - 1].after(cloneScreen)
     },
 
-    addPrices: function() {
-           
-            //Считаем суммарную стоимость экранов в массиве screens через reduce        
-           appData.screenPrice = appData.screens.reduce(function(sum, item) {      
-            return sum + (+item.price)   
-          }, 0)
-          
-             //метод - цикл для ввода и валидации доп. услуг
-            for(let key in appData.servicesNumber){
+    addPrices: function () {
+
+        //Считаем суммарную стоимость экранов в массиве screens через reduce        
+        appData.screenPrice = appData.screens.reduce(function (sum, item) {
+            return sum + (+item.price)
+        }, 0)
+
+        //метод - цикл для ввода и валидации доп. услуг
+        for (let key in appData.servicesNumber) {
             appData.servicePricesNumber += appData.servicesNumber[key]
         }
 
-        for(let key in appData.servicesPercent){
-            appData.servicePricesPercent += appData.screenPrice *(appData.servicesPercent[key]/100);
+        for (let key in appData.servicesPercent) {
+            appData.servicePricesPercent += appData.screenPrice * (appData.servicesPercent[key] / 100);
         }
 
         appData.fullPrice = +appData.screenPrice + appData.servicePricesNumber + appData.servicePricesPercent;
     },
 
 
-      //метод подсчета стоимости за вычетом отката
-      getServicePercentPrices: function() {
+    //метод подсчета стоимости за вычетом отката
+    getServicePercentPrices: function () {
         appData.servicePercentPrice = appData.fullPrice - (appData.fullPrice * (appData.rollback / 100))
     },
     // Расчет скидки в зависимости от суммы
-    getRollbackMessage: function(price) {
+    getRollbackMessage: function (price) {
         switch (true) {
             case price > 30000:
                 appData.rollbackMessage = 'Даем скидку 10%';
@@ -180,38 +172,36 @@ if (select.value.trim().length === 0 || input.value.trim().length === 0) {
             case 0 < price && price <= 15000:
                 appData.rollbackMessage = 'Скидка не предусмотрена';
                 break;
-            case price  <= 0:
+            case price <= 0:
                 appData.rollbackMessage = 'Что-то пошло не так';
                 break;
         }
-        
-    },  
+
+    },
 
     logger: function () {
         //вывод состава метода appData
         for (const key in appData) {
-          
-        }
-     
-        
-        // console.log(appData.fullPrice);
-        // console.log(appData.servicePercentPrice);
-        //console.log(appData.screens); 
-        //  //вывод в консоль общей стоимости экранов       
-        // console.log('Экраны_сумма: ' + appData.screenPrice);
 
-      },
-     
-      
-      // --Блок функционала--
-     
-    };
-    
-   
- //КОНЕЦ ОБЬЕКТА appData    
-  
+        }
+
+
+        console.log(appData.fullPrice);
+        console.log(appData.servicePercentPrice);
+        console.log(appData.screens);
+        //вывод в консоль общей стоимости экранов       
+        console.log('Экраны_сумма: ' + appData.screenPrice);
+
+    },
+
+
+    // --Блок функционала--
+
+};
+
+
+//КОНЕЦ ОБЬЕКТА appData    
+
 
 // функционал
-appData.init(); 
-
-
+appData.init();
