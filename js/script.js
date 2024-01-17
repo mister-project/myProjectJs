@@ -8,12 +8,11 @@ const buttonsPlus = document.querySelector(".screen-btn");
 //ур. 9 п.4
 const otherItemsPercent = document.querySelectorAll(".other-items.percent");
 const otherItemsNumber = document.querySelectorAll(".other-items.number");
+console.log()
 //ур. 9. п.5
 const inputTypeRange = document.querySelector(".rollback [type='range']");
 // ур 9. п.6
 const spanRangeValue = document.querySelector(".rollback .range-value");
-
-console.log(spanRangeValue)
 
 // ур 9. п.7
 const totalInput = document.getElementsByClassName("main-total__items")[0].querySelectorAll("input");
@@ -54,10 +53,11 @@ const appData = {
         buttonsPlus.addEventListener('click', appData.addScreenBlock)
         inputTypeRange.addEventListener('input', appData.rangeAssembled)
         inputTypeRange.addEventListener('change', appData.rangeAssembled)
-        console.log(inputTypeRange.value);
+
     },
     addTitle: function () {
         document.title = title.textContent
+
     },
     start: function () {
         appData.revise()
@@ -82,10 +82,9 @@ const appData = {
 
     rangeAssembled: (event) => {
         spanRangeValue.innerText = event.target.value + "%"
-        console.log(event.target.value);
-        //console.log(appData.spanRangeValue.textContent);
 
-
+        appData.rollback = event.target.value
+        console.log('rollback = ' + appData.rollback);
 
     },
 
@@ -96,10 +95,10 @@ const appData = {
             const input = screen.querySelector("input");
             if (select.value.trim().length === 0 || input.value.trim().length === 0) {
                 appData.isError = false;
-                console.log('isError при выполнениее IF: ' + appData.isError);
+                console.log('isError в функции revise: ' + appData.isError);
             }
             select.addEventListener("change", appData.revise);
-
+            console.log(screens)
         })
     },
 
@@ -126,7 +125,6 @@ const appData = {
                 name: selectName,
                 price: +select.value * +input.value,
                 count: input.value
-
             })
         })
 
@@ -142,7 +140,6 @@ const appData = {
             // console.log(input);
             if (check.checked) {
                 appData.servicesPercent[label.textContent] = +input.value
-
             }
 
         })
