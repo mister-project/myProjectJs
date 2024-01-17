@@ -84,7 +84,7 @@ const appData = {
         spanRangeValue.innerText = event.target.value + "%"
 
         appData.rollback = event.target.value
-        console.log('rollback = ' + appData.rollback);
+
 
     },
 
@@ -98,7 +98,7 @@ const appData = {
                 console.log('isError в функции revise: ' + appData.isError);
             }
             select.addEventListener("change", appData.revise);
-            console.log(screens)
+
         })
     },
 
@@ -109,6 +109,7 @@ const appData = {
 
         totalCountOther.value = appData.servicePricesPercent + appData.servicePricesNumber // вывод доп. услуг ( доп. сервисов)
         fullTotalCount.value = appData.fullPrice // вывод Итоговой стоимости
+        totalCountRollback.value = appData.servicePercentPrice // 
     },
 
     addScreens: function () {
@@ -170,12 +171,11 @@ const appData = {
         appData.screenPrice = appData.screens.reduce(function (sum, item) {
             return sum + (+item.price)
         }, 0)
-        console.log(appData.screens);
+
         appData.sumScreens = appData.screens.reduce(function (sum, item) {
             return sum + (+item.count)
         }, 0)
-        console.log(appData.sumScreens);
-        console.log(appData.screenPrice);
+
         //метод - цикл для ввода и валидации доп. услуг
         for (let key in appData.servicesNumber) {
             appData.servicePricesNumber += appData.servicesNumber[key]
@@ -186,12 +186,16 @@ const appData = {
         }
 
         appData.fullPrice = +appData.screenPrice + appData.servicePricesNumber + appData.servicePricesPercent;
+
+        appData.servicePercentPrice = appData.fullPrice - (appData.fullPrice * (appData.rollback / 100))
+
     },
+
 
 
     //метод подсчета стоимости за вычетом отката
     getServicePercentPrices: function () {
-        appData.servicePercentPrice = appData.fullPrice - (appData.fullPrice * (appData.rollback / 100))
+
     },
     // Расчет скидки в зависимости от суммы
     getRollbackMessage: function (price) {
