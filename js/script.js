@@ -3,13 +3,16 @@ const h1 = document.getElementsByTagName("h1")[0];
 
 //ур9. п2
 const buttonsBtn = document.getElementsByClassName("handler_btn")[0];
+const buttonReset = document.getElementsByClassName("handler_btn")[1];
+console.dir(buttonsBtn)
+console.dir(buttonReset)
 //ур. 9 п.3
 const buttonsPlus = document.querySelector(".screen-btn");
 //ур. 9 п.4
 const otherItemsPercent = document.querySelectorAll(".other-items.percent");
-console.log(otherItemsPercent)
+
 const otherItemsNumber = document.querySelectorAll(".other-items.number");
-console.log(otherItemsNumber)
+
 //ур. 9. п.5
 const inputTypeRange = document.querySelector(".rollback [type='range']");
 // ур 9. п.6
@@ -25,7 +28,7 @@ const totalCountRollback = document.getElementsByClassName('total-input')[4]
 // ур 9. п.8
 let screens = document.querySelectorAll(".screen");
 const cms = document.getElementById('cms-open')
-console.log(cms)
+
 
 //console.log('1')
 //объявление переменных
@@ -61,7 +64,7 @@ const appData = {
 
     },
 
-
+    //ВЫВОД ЗАГОЛОВКА В НАЗВАНИЕ СТРАНИЦЫ
     addTitle: function () {
         document.title = title.textContent
 
@@ -82,14 +85,14 @@ const appData = {
 
         // appData.getRollbackMessage(appData.fullPrice)
 
-        this.logger();
+        //this.logger(); - //активация вывода содержимого appData
 
-        this.showResult();
+        this.showResult(); // активация метода вывода данных
 
-        inputTypeRange.disabled = 'true'
-        cms.disabled = 'true'
+        this.block(); // ЗАПУСК МЕТОДА БЛОКИРОВКИ ЧЕК-БОКСА CMS И ПОЛОЗКИ С % ОТКАТА
 
-        // this.block();
+        buttonsBtn.style.display = 'none'
+        buttonReset.style.display = ''
     },
     //Блокировка полей ввода после нажатия на Расчитать
 
@@ -97,7 +100,6 @@ const appData = {
         spanRangeValue.innerText = event.target.value + "%"
 
         appData.rollback = event.target.value
-
 
     },
 
@@ -220,12 +222,11 @@ const appData = {
 
 
     // //Метод, блокирующий поля ввода 
-    // block: () => {
-    //     const select = document.querySelector("select");
-    //     console.log(select)
-    //     select.disabled = 'true';
+    block: () => {
+        inputTypeRange.disabled = 'true'
+        cms.disabled = 'true'
 
-    // },
+    },
 
     //метод подсчета стоимости за вычетом отката
     getServicePercentPrices: function () {
