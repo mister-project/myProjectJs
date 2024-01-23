@@ -8,7 +8,7 @@ const buttonsPlus = document.querySelector(".screen-btn");
 //ур. 9 п.4
 const otherItemsPercent = document.querySelectorAll(".other-items.percent");
 const otherItemsNumber = document.querySelectorAll(".other-items.number");
-console.log()
+
 //ур. 9. п.5
 const inputTypeRange = document.querySelector(".rollback [type='range']");
 // ур 9. п.6
@@ -33,7 +33,7 @@ const appData = {
     screens: [],
     screenPrice: 0,
     adaptive: true,
-    rollback: 15,
+    rollback: 0,
     servicePricesPercent: 0,
     servicePricesNumber: 0,
     fullPrice: 0,
@@ -45,40 +45,47 @@ const appData = {
     sumScreens: 0,
 
     init: function () {
-        appData.addTitle()
+        this.addTitle()
 
         buttonsBtn.addEventListener('click', () => {
-            appData.start()
+            this.start()
         })
-        buttonsPlus.addEventListener('click', appData.addScreenBlock)
-        inputTypeRange.addEventListener('input', appData.rangeAssembled)
-        inputTypeRange.addEventListener('change', appData.rangeAssembled)
+
+
+        buttonsPlus.addEventListener('click', this.addScreenBlock)
+        inputTypeRange.addEventListener('input', this.rangeAssembled)
+        inputTypeRange.addEventListener('change', this.rangeAssembled)
 
     },
+
+
     addTitle: function () {
         document.title = title.textContent
 
     },
     start: function () {
-        appData.revise()
+        this.revise()
 
-        if (appData.isError) {
-            appData.addScreens();
+        if (this.isError) {
+            this.addScreens();
         }
-        console.log('isError в функции Start; ' + appData.isError)
+        console.log('isError в функции Start; ' + this.isError)
 
-        appData.addServices()
+        this.addServices()
 
-        appData.addPrices()
+        this.addPrices()
 
         // appData.getServicePercentPrices()
 
         // appData.getRollbackMessage(appData.fullPrice)
 
-        // appData.logger()                          
+        this.logger();
 
-        appData.showResult();
+        this.showResult();
+
+        this.block();
     },
+    //Блокировка полей ввода после нажатия на Расчитать
 
     rangeAssembled: (event) => {
         spanRangeValue.innerText = event.target.value + "%"
@@ -88,6 +95,7 @@ const appData = {
 
     },
 
+
     revise: () => {
         screens = document.querySelectorAll(".screen")
         screens.forEach((screen) => {
@@ -95,29 +103,33 @@ const appData = {
             const input = screen.querySelector("input");
             if (select.value.trim().length === 0 || input.value.trim().length === 0) {
                 appData.isError = false;
-                console.log('isError в функции revise: ' + appData.isError);
+                console.log('isError в функции revise: ' + this.isError);
             }
-            select.addEventListener("change", appData.revise);
+            select.addEventListener("change", this.revise);
 
         })
     },
 
-
     showResult: function () {
-        total.value = appData.screenPrice // вывод стоимости верстки
-        totalCount.value = appData.sumScreens // вывод суммы экранов
+        total.value = this.screenPrice // вывод стоимости верстки
+        totalCount.value = this.sumScreens // вывод суммы экранов
 
-        totalCountOther.value = appData.servicePricesPercent + appData.servicePricesNumber // вывод доп. услуг ( доп. сервисов)
-        fullTotalCount.value = appData.fullPrice // вывод Итоговой стоимости
-        totalCountRollback.value = appData.servicePercentPrice // 
+        totalCountOther.value = this.servicePricesPercent + this.servicePricesNumber // вывод доп. услуг ( доп. сервисов)
+        fullTotalCount.value = this.fullPrice // вывод Итоговой стоимости
+        totalCountRollback.value = this.servicePercentPrice // 
     },
 
     addScreens: function () {
 
         screens = document.querySelectorAll(".screen")
         screens.forEach(function (screen, index) {
-            const select = screen.querySelector('select');
+            let select = screen.querySelector('select');
+            select.disabled = 'true'; //блокировка поля "Тит экранов"
+            console.log(select)
+
             const input = screen.querySelector('input')
+            input.disabled = 'true' //блокировка поля "Количество экранов"
+
             const selectName = select.options[select.selectedIndex].textContent
 
 
@@ -140,7 +152,7 @@ const appData = {
             // console.log(label);
             // console.log(input);
             if (check.checked) {
-                appData.servicesPercent[label.textContent] = +input.value
+                this.servicesPercent[label.textContent] = +input.value
             }
 
         })
@@ -168,30 +180,37 @@ const appData = {
     addPrices: function () {
 
         //Считаем суммарную стоимость экранов в массиве screens через reduce        
-        appData.screenPrice = appData.screens.reduce(function (sum, item) {
+        this.screenPrice = this.screens.reduce(function (sum, item) {
             return sum + (+item.price)
         }, 0)
 
-        appData.sumScreens = appData.screens.reduce(function (sum, item) {
+        this.sumScreens = this.screens.reduce(function (sum, item) {
             return sum + (+item.count)
         }, 0)
 
         //метод - цикл для ввода и валидации доп. услуг
-        for (let key in appData.servicesNumber) {
-            appData.servicePricesNumber += appData.servicesNumber[key]
+        for (let key in this.servicesNumber) {
+            this.servicePricesNumber += this.servicesNumber[key]
         }
 
-        for (let key in appData.servicesPercent) {
-            appData.servicePricesPercent += appData.screenPrice * (appData.servicesPercent[key] / 100);
+        for (let key in this.servicesPercent) {
+            this.servicePricesPercent += this.screenPrice * (this.servicesPercent[key] / 100);
         }
 
-        appData.fullPrice = +appData.screenPrice + appData.servicePricesNumber + appData.servicePricesPercent;
+        this.fullPrice = +this.screenPrice + this.servicePricesNumber + this.servicePricesPercent;
 
-        appData.servicePercentPrice = appData.fullPrice - (appData.fullPrice * (appData.rollback / 100))
+        this.servicePercentPrice = this.fullPrice - (this.fullPrice * (this.rollback / 100))
 
     },
 
 
+    //Метод, блокирующий поля ввода 
+    block: () => {
+        const select = document.querySelector("select");
+        console.log(select)
+        select.disabled = 'true';
+
+    },
 
     //метод подсчета стоимости за вычетом отката
     getServicePercentPrices: function () {
@@ -201,33 +220,33 @@ const appData = {
     getRollbackMessage: function (price) {
         switch (true) {
             case price > 30000:
-                appData.rollbackMessage = 'Даем скидку 10%';
+                this.rollbackMessage = 'Даем скидку 10%';
                 break;
             case 15000 < price && price <= 30000:
-                appData.rollbackMessage = 'Даем скидку 5%';
+                this.rollbackMessage = 'Даем скидку 5%';
                 break;
             case 0 < price && price <= 15000:
-                appData.rollbackMessage = 'Скидка не предусмотрена';
+                this.rollbackMessage = 'Скидка не предусмотрена';
                 break;
             case price <= 0:
-                appData.rollbackMessage = 'Что-то пошло не так';
+                this.rollbackMessage = 'Что-то пошло не так';
                 break;
         }
 
     },
 
     logger: function () {
-        //вывод состава метода appData
+        //вывод состава метода appData - для запуска надо активировать функцию сверху
         for (const key in appData) {
 
         }
 
 
-        console.log(appData.fullPrice);
-        console.log(appData.servicePercentPrice);
-        console.log(appData.screens);
+        console.log('fullPrice: ' + this.fullPrice);
+        console.log('servicePercentPrice: ' + this.servicePercentPrice);
+        console.log('screens' + this.screens);
         //вывод в консоль общей стоимости экранов       
-        console.log('Экраны_сумма: ' + appData.screenPrice);
+        console.log('Экраны_сумма(screenPrice): ' + this.screenPrice);
 
     },
 
