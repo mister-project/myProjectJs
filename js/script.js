@@ -7,8 +7,9 @@ const buttonsBtn = document.getElementsByClassName("handler_btn")[0];
 const buttonsPlus = document.querySelector(".screen-btn");
 //ур. 9 п.4
 const otherItemsPercent = document.querySelectorAll(".other-items.percent");
+console.log(otherItemsPercent)
 const otherItemsNumber = document.querySelectorAll(".other-items.number");
-
+console.log(otherItemsNumber)
 //ур. 9. п.5
 const inputTypeRange = document.querySelector(".rollback [type='range']");
 // ур 9. п.6
@@ -23,6 +24,8 @@ const fullTotalCount = document.getElementsByClassName('total-input')[3]
 const totalCountRollback = document.getElementsByClassName('total-input')[4]
 // ур 9. п.8
 let screens = document.querySelectorAll(".screen");
+const cms = document.getElementById('cms-open')
+console.log(cms)
 
 //console.log('1')
 //объявление переменных
@@ -46,7 +49,7 @@ const appData = {
 
     init: function () {
         this.addTitle()
-
+        //НАВЕШИВАНИЕ СОБЫТИЯ НА КНОПКУ "РАСЧИТАТЬ"
         buttonsBtn.addEventListener('click', () => {
             this.start()
         })
@@ -83,7 +86,10 @@ const appData = {
 
         this.showResult();
 
-        this.block();
+        inputTypeRange.disabled = 'true'
+        cms.disabled = 'true'
+
+        // this.block();
     },
     //Блокировка полей ввода после нажатия на Расчитать
 
@@ -120,12 +126,14 @@ const appData = {
     },
 
     addScreens: function () {
-
+        // ВЫДЕЛЕНИЕ ПОЛЕЙ ВВОДА: (ТИПЫ ЭКРАНА + ВЫПАДАЮЩИЙ СПИСОК) И КОЛИЧЕСТВО ЭКРАНОВ 
+        // + ФОРМИРОВАНИЕ МАССИВА ПО ЭКРАНАМ С РАСЧЕТОМ СТОИМОСТИ
+        // + БЛОКИРОВКА ПОЛЕЙ ЧЕРЕЗ DISABLED ПОСЛЕ НАЖАТИЯ КНОПКИ "РАСЧЕТ"
         screens = document.querySelectorAll(".screen")
+        console.log(screens)
         screens.forEach(function (screen, index) {
             let select = screen.querySelector('select');
             select.disabled = 'true'; //блокировка поля "Тит экранов"
-            console.log(select)
 
             const input = screen.querySelector('input')
             input.disabled = 'true' //блокировка поля "Количество экранов"
@@ -142,10 +150,12 @@ const appData = {
         })
 
     },
-
+    //ПЕРЕБОР ПОЛЕЙ С ЧЕК-БОКСАМИ И ИХ РАСЧЕТ
     addServices: function () {
+        //ВЫЧИСЛЕНИЕ, БЛОКИРОВКА ЧЕК - БОКСОВ ПОЛЕЙ, РАСЧИТЫВАЕМЫХ ОТ % СТОИМОСТИ ЭКРАНОВ
         otherItemsPercent.forEach(function (item) {
             const check = item.querySelector('input[type=checkbox]')
+            check.disabled = 'true' //блокировка чек-боксов выбора полей со стоимостью в % от стоимости экранов (АДАПТАЦИЯ ПОД ПЛАНШЕТЫ И МОБИЛЬНИКИ)
             const label = item.querySelector('label')
             const input = item.querySelector('input[type=text]')
             // console.log(check);
@@ -156,8 +166,13 @@ const appData = {
             }
 
         })
+
+        //ВЫЧИСЛЕНИЕ, БЛОКИРОВКА ЧЕК-БОКСОВ ПОЛЕЙ С ФИКСИРОВАННОЙ СТОИМОСТЬЮ
+
         otherItemsNumber.forEach(function (item) {
             const check = item.querySelector('input[type=checkbox]')
+
+            check.disabled = 'true' //блокировка чек-боксов выбора полей с фиксированной стоимостью
             const label = item.querySelector('label')
             const input = item.querySelector('input[type=text]')
             // console.log(check);
@@ -204,13 +219,13 @@ const appData = {
     },
 
 
-    //Метод, блокирующий поля ввода 
-    block: () => {
-        const select = document.querySelector("select");
-        console.log(select)
-        select.disabled = 'true';
+    // //Метод, блокирующий поля ввода 
+    // block: () => {
+    //     const select = document.querySelector("select");
+    //     console.log(select)
+    //     select.disabled = 'true';
 
-    },
+    // },
 
     //метод подсчета стоимости за вычетом отката
     getServicePercentPrices: function () {
