@@ -4,8 +4,7 @@ let screenBlock = document.querySelector(".screen");
 //ур9. п2
 const buttonsBtn = document.getElementsByClassName("handler_btn")[0];
 const buttonReset = document.getElementsByClassName("handler_btn")[1];
-console.dir(buttonsBtn)
-console.dir(buttonReset)
+
 //ур. 9 п.3
 const buttonsPlus = document.querySelector(".screen-btn");
 //ур. 9 п.4
@@ -328,7 +327,17 @@ const appData = {
             const check = item.querySelector('input[type=checkbox]')
 
             check.disabled = '' //РАЗБЛОКИРОВКА чек-боксов выбора полей с фиксированной стоимостью
+
+            check.checked = ''
+
         })
+
+
+        cms.disabled = '' //РАЗБЛОКИРОВКА чек-бока CMS
+        cms.checked = ''
+
+        inputTypeRange.disabled = '' //РАЗБЛОКИРОВКА ползунка с процентами открата
+        inputTypeRange.value = 0
     }
 
 
