@@ -1,6 +1,6 @@
 'use strict';
 const h1 = document.getElementsByTagName("h1")[0];
-
+let screenBlock = document.querySelector(".screen");
 //ур9. п2
 const buttonsBtn = document.getElementsByClassName("handler_btn")[0];
 const buttonReset = document.getElementsByClassName("handler_btn")[1];
@@ -293,9 +293,7 @@ const appData = {
     },
     // РАЗБЛОКИРОВКА И УДАЛЕНИЕ ПОЛЕЙ С ЭКРАНАМИ
     resetScreens: () => {
-        console.log(screens);
-        // screens = document.querySelectorAll(".screen")
-        // console.log(screens)
+
         screens.forEach(function (screen, index) {
             let select = screen.querySelector('select');
             select.disabled = ''; //разблокировка поля "Тит экранов"
@@ -303,14 +301,15 @@ const appData = {
             const input = screen.querySelector('input')
             input.disabled = '' //разблокировка поля "Количество экранов"
             //Удаление (ниже) экранов всех, кроме первого
+
+
             if (index > 0) {
                 screen.remove();
             }
+            select.selectedIndex = "";
+            input.value = ""
 
         })
-
-
-
 
 
     },
