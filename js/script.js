@@ -338,6 +338,7 @@ const appData = {
 
         inputTypeRange.disabled = '' //РАЗБЛОКИРОВКА ползунка с процентами открата
         inputTypeRange.value = 0
+        spanRangeValue.innerText = 0 + '%'
     }
 
 
