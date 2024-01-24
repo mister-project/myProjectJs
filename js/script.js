@@ -275,7 +275,8 @@ const appData = {
 
     reset: function () {
         appData.resetBtn(); //Возвращение кнопки рассчитать
-        appData.resetScreens();
+        appData.resetScreens(); //разблокирует поля 
+
         // appData.resetScreenBlocks();
         // appData.deleteScreenBlocks();
         // appData.disabledScreenBlocks(false);
@@ -301,8 +302,17 @@ const appData = {
 
             const input = screen.querySelector('input')
             input.disabled = '' //разблокировка поля "Количество экранов"
+            //Удаление (ниже) экранов всех, кроме первого
+            if (index > 0) {
+                screen.remove();
+            }
 
         })
+
+
+
+
+
     },
 
     resetBtn: () => {
