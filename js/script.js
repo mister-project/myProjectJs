@@ -275,23 +275,14 @@ const appData = {
     },
 
     reset: function () {
-        appData.resetBtn(); //Возвращение кнопки рассчитать
-        appData.resetScreens(); //разблокирует поля 
-        appData.resetCheckBox(); //разблокировка и обнуление чек- боксов
+        this.resetBtn(); //Возвращение кнопки рассчитать
+        this.resetScreens(); //разблокирует поля 
+        this.resetCheckBox(); //разблокировка и обнуление чек- боксов
+        this.resetTotal(); //
+        this.showResult();
 
-        // appData.resetScreenBlocks();
-        // appData.deleteScreenBlocks();
-        // appData.disabledScreenBlocks(false);
-        // appData.resetCheckbox(otherItemsPercent);
-        // appData.resetCheckbox(otherItemsNumber);
-        // appData.disabledCheckbox(otherItemsPercent, false);
-        // appData.disabledCheckbox(otherItemsNumber, false);
-        // appData.disabledCmsInputOpen(false);
-        // appData.disabledHiddenCmsVariants(false);
-        // appData.creatStyleButton(screenButton, false, "#A52A2A");
-        // appData.resetCmsInputOpen();
-        // appData.clearInputRange();
-        // appData.clearTotal();
+
+
     },
     // РАЗБЛОКИРОВКА И УДАЛЕНИЕ ПОЛЕЙ С ЭКРАНАМИ
     resetScreens: () => {
@@ -339,7 +330,23 @@ const appData = {
         inputTypeRange.disabled = '' //РАЗБЛОКИРОВКА ползунка с процентами отката
         inputTypeRange.value = 0 //ОБНУЛЕНИЕ ползунка с процентами отката
         spanRangeValue.innerText = 0 + '%' //ОБНУЛЕНИЕ НАДПИСИ ПОД ПОЛЗУНКОМ с процентами отката
-    }
+    },
+
+    resetTotal: function () {
+        this.screenPrice = 0;
+        this.servicePricesNumber = 0;
+        this.servicePricesPercent = 0;
+        this.fullPrice = 0;
+        this.servicePercentPrice = 0;
+        this.sumScreens = 0;
+        this.totalInput = 0;
+        this.total = 0;
+        this.totalCount = 0;
+        this.totalCountOther = 0;
+        this.fullTotalCount = 0;
+        this.totalCountRollback = 0;
+
+    },
 
 
 };
