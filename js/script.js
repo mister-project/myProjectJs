@@ -50,13 +50,16 @@ const appData = {
     isError: true,
     sumScreens: 0,
 
+
     init: function () {
         this.addTitle()
         //НАВЕШИВАНИЕ СОБЫТИЯ НА КНОПКУ "РАСЧИТАТЬ"
         buttonsBtn.addEventListener('click', () => {
             this.start()
         })
-
+        buttonReset.addEventListener('click', () => {
+            this.reset()
+        })
 
         buttonsPlus.addEventListener('click', this.addScreenBlock)
         inputTypeRange.addEventListener('input', this.rangeAssembled)
@@ -91,9 +94,11 @@ const appData = {
 
         this.block(); // ЗАПУСК МЕТОДА БЛОКИРОВКИ ЧЕК-БОКСА CMS И ПОЛОЗКИ С % ОТКАТА
 
-        buttonsBtn.style.display = 'none'
-        buttonReset.style.display = ''
+
+
     },
+
+
     //Блокировка полей ввода после нажатия на Расчитать
 
     rangeAssembled: (event) => {
@@ -103,9 +108,9 @@ const appData = {
 
     },
 
-
     revise: () => {
         screens = document.querySelectorAll(".screen")
+        console.log(screens)
         screens.forEach((screen) => {
             const select = screen.querySelector("select");
             const input = screen.querySelector("input");
@@ -221,10 +226,12 @@ const appData = {
     },
 
 
-    // //Метод, блокирующий поля ввода 
+    //Метод, блокирующий поля ввода при нажатии кнопки "Расчитать"(блокировку других полей см. в методах addScreens и addServices )
     block: () => {
-        inputTypeRange.disabled = 'true'
-        cms.disabled = 'true'
+        inputTypeRange.disabled = 'true' //блокировка ползунка с процентами открата
+        cms.disabled = 'true' //Блокировка чек-бока CMS
+        buttonsBtn.style.display = 'none' // Убираем кнопку "Расчитать" после нажатия на нее (см. метод Init)
+        buttonReset.style.display = ''
 
     },
 
@@ -266,8 +273,43 @@ const appData = {
 
     },
 
+    reset: function () {
+        appData.resetBtn(); //Возвращение кнопки рассчитать
+        appData.resetScreens();
+        // appData.resetScreenBlocks();
+        // appData.deleteScreenBlocks();
+        // appData.disabledScreenBlocks(false);
+        // appData.resetCheckbox(otherItemsPercent);
+        // appData.resetCheckbox(otherItemsNumber);
+        // appData.disabledCheckbox(otherItemsPercent, false);
+        // appData.disabledCheckbox(otherItemsNumber, false);
+        // appData.disabledCmsInputOpen(false);
+        // appData.disabledHiddenCmsVariants(false);
+        // appData.creatStyleButton(screenButton, false, "#A52A2A");
+        // appData.resetCmsInputOpen();
+        // appData.clearInputRange();
+        // appData.clearTotal();
+    },
+    // РАЗБЛОКИРОВКА И УДАЛЕНИЕ ПОЛЕЙ С ЭКРАНАМИ
+    resetScreens: () => {
+        console.log(screens);
+        // screens = document.querySelectorAll(".screen")
+        // console.log(screens)
+        screens.forEach(function (screen, index) {
+            let select = screen.querySelector('select');
+            select.disabled = ''; //разблокировка поля "Тит экранов"
 
-    // --Блок функционала--
+            const input = screen.querySelector('input')
+            input.disabled = '' //разблокировка поля "Количество экранов"
+
+        })
+    },
+
+    resetBtn: () => {
+        buttonsBtn.style.display = '' // Убираем кнопку "Расчитать" после нажатия на нее (см. метод Init)
+        buttonReset.style.display = 'none'
+    },
+
 
 };
 
