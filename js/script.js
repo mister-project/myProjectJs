@@ -326,19 +326,19 @@ const appData = {
         otherItems.forEach(function (item) {
             const check = item.querySelector('input[type=checkbox]')
 
-            check.disabled = '' //РАЗБЛОКИРОВКА чек-боксов выбора полей с фиксированной стоимостью
+            check.disabled = '' //РАЗБЛОКИРОВКА чек-боксов выбора полей с % И ФИКСИР. СТОИМОСТЬЮ
 
-            check.checked = ''
+            check.checked = '' //ОБНУЛЕНИЕ чек-боксов выбора полей с % И ФИКСИР. СТОИМОСТЬЮ
 
         })
 
 
         cms.disabled = '' //РАЗБЛОКИРОВКА чек-бока CMS
-        cms.checked = ''
+        cms.checked = '' //ОБНУЛЕНИЕ чек-бока CMS
 
-        inputTypeRange.disabled = '' //РАЗБЛОКИРОВКА ползунка с процентами открата
-        inputTypeRange.value = 0
-        spanRangeValue.innerText = 0 + '%'
+        inputTypeRange.disabled = '' //РАЗБЛОКИРОВКА ползунка с процентами отката
+        inputTypeRange.value = 0 //ОБНУЛЕНИЕ ползунка с процентами отката
+        spanRangeValue.innerText = 0 + '%' //ОБНУЛЕНИЕ НАДПИСИ ПОД ПОЛЗУНКОМ с процентами отката
     }
 
 
