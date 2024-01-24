@@ -12,6 +12,8 @@ const buttonsPlus = document.querySelector(".screen-btn");
 const otherItemsPercent = document.querySelectorAll(".other-items.percent");
 
 const otherItemsNumber = document.querySelectorAll(".other-items.number");
+const otherItems = document.querySelectorAll(".other-items");
+console.log(otherItems);
 
 //ур. 9. п.5
 const inputTypeRange = document.querySelector(".rollback [type='range']");
@@ -169,7 +171,7 @@ const appData = {
             // console.log(label);
             // console.log(input);
             if (check.checked) {
-                this.servicesPercent[label.textContent] = +input.value
+                appData.servicesPercent[label.textContent] = +input.value
             }
 
         })
@@ -276,6 +278,7 @@ const appData = {
     reset: function () {
         appData.resetBtn(); //Возвращение кнопки рассчитать
         appData.resetScreens(); //разблокирует поля 
+        appData.resetCheckBox(); //разблокировка и обнуление чек- боксов
 
         // appData.resetScreenBlocks();
         // appData.deleteScreenBlocks();
@@ -318,6 +321,15 @@ const appData = {
         buttonsBtn.style.display = '' // Убираем кнопку "Расчитать" после нажатия на нее (см. метод Init)
         buttonReset.style.display = 'none'
     },
+    //РАЗБЛОКИРОВКА ЧЕК-БОКСОВ 
+    resetCheckBox: () => {
+        console.log(otherItems)
+        otherItems.forEach(function (item) {
+            const check = item.querySelector('input[type=checkbox]')
+
+            check.disabled = '' //РАЗБЛОКИРОВКА чек-боксов выбора полей с фиксированной стоимостью
+        })
+    }
 
 
 };
